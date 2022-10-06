@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace KartaPracy3
+﻿namespace KartaPracy3
 {
     class program
     {
@@ -16,7 +14,7 @@ namespace KartaPracy3
 
             //zad2
             System.Console.WriteLine("ZADANIE 2");
-            for (i = 105; i = 990; i += 15) System.Console.WriteLine(i);   
+            for (i = 105; i == 990; i += 15) System.Console.WriteLine(i);   
 
             //zad3
             System.Console.WriteLine("ZADANIE 3");
@@ -33,14 +31,13 @@ namespace KartaPracy3
             //zad5
             //TODO
 
-            //zad6 nie wiem jak to działa
+            // //zad6 nie wiem jak to działa
             ulong x = 1 , y = 1;
             System.Console.WriteLine("ZADANIE 6");
             System.Console.WriteLine("Ile chcesz liczb ciągu?: ");
 
             int liczb = int.Parse(Console.ReadLine());
-            i = 0;
-            while (i < liczb)
+            for (i = 0;i < liczb;)
             {
                 System.Console.WriteLine(x);
                 x += y;
