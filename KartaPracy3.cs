@@ -23,8 +23,8 @@
             //zad3
             System.Console.WriteLine("ZADANIE 3");
             a = int.Parse(Console.ReadLine());
-            for (int i = 1; i <= a; i++) {
-                if (a % i == 0) System.Console.WriteLine(i);}
+            for (int i = 1; i <= a; i++) 
+            if (a % i == 0) System.Console.WriteLine(i);
 
             //zad4
             a = 0;
@@ -33,7 +33,16 @@
             System.Console.WriteLine(a);
 
             //zad5
-            //TODO
+            System.Console.WriteLine("ZADANIE 5");
+            System.Console.WriteLine("Podaj ilość liczb:");
+            a = int.Parse(System.Console.ReadLine());
+            int b = a * (a + 1) / 2 ;
+            for (int i = 0; i < a - 1;i++)
+            {
+                int spr = int.Parse(System.Console.ReadLine());
+                b -= spr;
+            }
+            System.Console.WriteLine("Nie napisałeś: " + b);
 
             // //zad6 nie wiem jak to działa
             ulong x = 1 , y = 1;
