@@ -63,7 +63,7 @@ namespace KartaPracy2A
             if (a < b + c && b < a + c && c < a + b)
             {
                 System.Console.WriteLine("Trójkąt powstanie");
-                if (a**2 + b**2 == c**2 || b**2 + c**2 == a**2 || c**2 + a**2 || b**2)
+                if (a**2 + b**2 == c**2 || b**2 + c**2 == a**2 || c**2 + a**2 == b**2)
                 {
                     System.Console.WriteLine("Będzie to trójkąt prostokątny");
                 }
