@@ -1,5 +1,4 @@
 CodingArea/CodingArea.csproj
-CodingArea/Program.cs
 CodingArea/bin/Debug/net6.0/CodingArea.deps.json
 CodingArea/bin/Debug/net6.0/CodingArea.dll
 CodingArea/bin/Debug/net6.0/CodingArea.exe
@@ -25,3 +24,4 @@ CodingArea/obj/Debug/net6.0/CodingArea.GlobalUsings.g.cs
 CodingArea/obj/Debug/net6.0/CodingArea.pdb
 CodingArea/obj/Debug/net6.0/ref/CodingArea.dll
 CodingArea/obj/Debug/net6.0/refint/CodingArea.dll
+CodingArea/CodingArea.cs
