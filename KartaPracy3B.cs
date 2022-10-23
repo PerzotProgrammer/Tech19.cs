@@ -74,19 +74,19 @@ for(int i = 11; i <= (ileLiczb * 2) + 11; i += 2)
 }
 System.Console.WriteLine($"suma to: {suma}");
 
-//TODO zad8 bo nie działa
+//zad8
 System.Console.WriteLine("ZADANIE 8");
 System.Console.Write("Podaj początkowy kapitał: ");
 kapPocz = int.Parse(System.Console.ReadLine());
 System.Console.Write("Podaj lata inwestycji: ");
 lataInw = int.Parse(System.Console.ReadLine());
 suma = kapPocz;
-for(int i = 0; i < lataInw * 2; i++)
+for(int i = 0; i < lataInw * 12; i++)
 {
-    kapKon = suma * 0.06 * (1/12);
-    suma += kapKon;
+    kapKon = suma * 0.06 * 1/12f;
+    suma = suma + kapKon;
 }
-System.Console.WriteLine($"Końcowy kapitał wynosi: {suma} zł");
+System.Console.WriteLine($"Końcowy kapitał wynosi: {Math.Round(suma,2)} zł");
 
 //zad9
 System.Console.WriteLine("ZADANIE 9");
