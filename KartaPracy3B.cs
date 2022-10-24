@@ -109,11 +109,11 @@ System.Console.WriteLine($"Suma to: {suma}");
 System.Console.WriteLine("ZADANIE 10");
 for(double i = 1; i <= 1000; i++)
 {
-    if(i - Math.Floor(i/10)*10 == Math.Sqrt(i))
+    if(i % 10 == Math.Sqrt(i))
     {
         System.Console.WriteLine(i);
     }
-    else if(i - Math.Floor(i/100)*100 == Math.Sqrt(i))
+    else if(i % 100 == Math.Sqrt(i))
     {
         System.Console.WriteLine(i);
     }
