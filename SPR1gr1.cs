@@ -5,10 +5,10 @@ int c = int.Parse(Console.ReadLine());
 int d = int.Parse(Console.ReadLine());
 
 Console.Write("a: ");
-Console.WriteLine((a+b+c+d)/2f);
+Console.WriteLine((a+b+c+d)/4f);
 
 Console.Write("b: ");
-if (a - 2 == d || d - 2 == a) Console.Write(true);
+if (a >= d - 2 || a <= d + 2) Console.Write(true);
 else Console.WriteLine(false);
 
 Console.Write("c: ");
