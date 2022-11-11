@@ -16,8 +16,14 @@ else if (c * 5 >= b - a) Console.WriteLine(5);
 else Console.WriteLine(false);
 
 Console.Write("c: ");
-if (c * 5 == b - a) Console.WriteLine(true);
-else Console.WriteLine(false);
+if (c * 5 == b - a) {
+    Console.Write(true);
+    Console.Write((b - a)/5);
+}
+else {
+    Console.Write(false);
+    Console.Write((b - a)/5);
+}
 
 Console.WriteLine("ZADANIE 2");
 
