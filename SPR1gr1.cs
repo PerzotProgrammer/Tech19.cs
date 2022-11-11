@@ -18,34 +18,23 @@ if (b < c) spr++;
 if (c < d) spr++;
 Console.WriteLine(spr);
 
-Console.WriteLine("ZADANIE 2 NIE DZIAŁA!");
-int i = 0; 
-int col = 0;
-
-for (col = 10; col < 100; col++) 
+Console.WriteLine("ZADANIE 2");
+int col;
+int spr;
+for(col = 10; col < 100; col++)
 {
     int temp = col;
-    i = 0;
-    for(temp = i; temp > 1; i++)
+    for(spr = 1; spr <= 10; spr++)
     {
-        if(temp % 2 == 0)
-        {
-            temp /= 2;
-        }
-        else
-        {
-            temp = (temp * 3) + 1;
-        }
+        if (temp % 2 == 0) temp /= 2;
+        else temp = (temp * 3) + 1;
+        if (temp == 1) break;
     }
-    if (i == 9 && temp == 1)
-    {
-        Console.WriteLine($"1 na 9 miejscu jest kiedy n = {col}");
-        break;
-    }
+    if (spr == 9 && temp == 1) Console.WriteLine($"liczba 1 jest na 9 miejscu w n = {col}");
 }
 
-int x = 7;
 Console.WriteLine("ZADANIE 3");
+int x = 7;
 
 for(int i = 1; i <= x; i++)
 {
