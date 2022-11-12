@@ -27,13 +27,14 @@ else {
 
 Console.WriteLine("ZADANIE 2");
 
-for (int faj = 1000; faj <= 10000; faj++)
+for (int faj = 1000; faj < 10000; faj++)
 {
     int jed = faj % 10;
-    int dz = (faj % 100)/10;
-    int set = (faj % 1000)/100;
-    if (jed * 2 > dz && dz * 2 > set) Console.WriteLine(faj);
+    int dz = (faj % 100) / 10;
+    int set = (faj % 1000) / 100;
+    if (jed == dz * 2 && dz == set * 2) Console.WriteLine(faj);
 }
+
 
 Console.WriteLine("ZADANIE 3");
 int x = 7;
