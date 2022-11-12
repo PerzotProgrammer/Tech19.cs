@@ -32,7 +32,7 @@ for (int faj = 1000; faj < 10000; faj++)
     int jed = faj % 10;
     int dz = (faj % 100) / 10;
     int set = (faj % 1000) / 100;
-    if (jed == dz * 2 && dz == set * 2) Console.WriteLine(faj);
+    if (jed == dz * 2 && dz == set * 2 && jed != 0) Console.WriteLine(faj);
 }
 
 
