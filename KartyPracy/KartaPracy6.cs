@@ -171,16 +171,18 @@ for (int i = 0; i < input1; i++)
 }
 Console.WriteLine($"Wynik ciągu: {suma}");
 
-//WORKING?
 Console.WriteLine("ZADANIE 9");
 input1 = Convert.ToInt32(Console.ReadLine());
 ciag1 = 1;
-suma = 0;
+suma = 1;
+pot = 0;
 for (int i = 0; i < input1; i++)
 {
-    suma += ciag1 * -(ciag1 * 2);
-    if (i == input1) break;
+    if (pot % 2 == 0) suma *= ciag1;
+    else suma *= -ciag1;
+
     ciag1 *= 2;
+    pot++;
 }
 Console.WriteLine($"Wynik ciągu: {suma}");
 
@@ -222,7 +224,6 @@ Console.WriteLine("ZADANIE 12");
 input1 = Convert.ToInt32(Console.ReadLine());
 ciag1 = 0;
 ciag2 = 0;
-suma = 0;
 temp1 = 1;
 temp2 = 1;
 pot = 1;
@@ -235,4 +236,64 @@ for (int i = 0; i < input1; i++)
     temp2 = pot * pot;
 }
 suma = ciag1 / ciag2;
+Console.WriteLine($"Wynik ciągu: {suma}");
+
+
+Console.WriteLine("ZADANIE 13 i 14 (takie same)");
+input1 = Convert.ToInt32(Console.ReadLine());
+ciag1 = 0;
+ciag2 = 0;
+suma = 0;
+for (int i = 1; i <= input1; i++)
+{
+    ciag1 += 2;
+    ciag2 = Convert.ToInt32(Math.Pow(i, 3) + 2);
+    temp1 = ciag1 / ciag2;
+    suma += temp1;
+}
+Console.WriteLine($"Wynik ciągu: {suma}");
+
+
+Console.WriteLine("ZADANIE 15");
+input1 = Convert.ToInt32(Console.ReadLine());
+ciag1 = 1;
+ciag2 = 1;
+temp1 = 3;
+temp2 = 1;
+suma = 1;
+for (int i = 0; i < input1; i++)
+{
+    ciag1 = temp1;
+    ciag2 = temp2;
+    temp1++;
+    temp2 *= 2 + 1;
+    suma *= ciag1 / ciag2;
+}
+Console.WriteLine($"Wynik ciągu: {suma}");
+
+// fib działa ale 1,1,2,3,5,8,13,...
+Console.WriteLine("ZADANIE 16");
+input1 = Convert.ToInt32(Console.ReadLine());
+ciag1 = 1;
+ciag2 = 1;
+temp1 = 1;
+temp2 = 1;
+suma = 1;
+pot = 0;
+for (int i = 0; i < input1; i++)
+{
+    if (pot % 2 == 0)
+    {
+        ciag1 = temp1;
+        temp1 += temp2;
+    }
+    else
+    {
+        ciag1 = temp2;
+        temp2 += temp1;
+    }
+    pot++;
+    suma *= ciag1 / ciag2;
+    ciag2 *= 2;
+}
 Console.WriteLine($"Wynik ciągu: {suma}");
