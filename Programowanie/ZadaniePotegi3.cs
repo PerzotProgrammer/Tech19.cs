@@ -1,6 +1,8 @@
 // UWAGA!!!
 // PLIK *.txt dajesz do tego samego folderu co Program.cs
 
+// TREŚĆ ZADANIA
+// Znajdź w pliku tekstowym ile występuje potęg liczby 3
 
 #pragma warning disable
 int ilosc = 1000000;
