@@ -1,36 +1,36 @@
 using System;
 
-// void PrzywitajSie(){
-//     System.Console.WriteLine("Jak masz na imie lolu?");
-//     string imie = System.Console.ReadLine();
-//     imie = imie.ToUpper();
-//     System.Console.WriteLine($"CZEŚĆ {imie}!");
-// }
+void PrzywitajSie(){
+    System.Console.WriteLine("Jak masz na imie lolu?");
+    string imie = System.Console.ReadLine();
+    imie = imie.ToUpper();
+    System.Console.WriteLine($"CZEŚĆ {imie}!");
+}
 
-// PrzywitajSie();
+PrzywitajSie();
 
-// int Dodaj(int x, int y){
-//     return x + y;
-// }
+int Dodaj(int x, int y){
+    return x + y;
+}
 
-// System.Console.WriteLine(Dodaj(1,2));
+System.Console.WriteLine(Dodaj(1,2));
 
-// string Odwroc(string ciag){
-//     char[] odwrotnosc = ciag.ToCharArray();
-//     Array.Reverse(odwrotnosc);
-//     return new string(odwrotnosc);
-// }
+string Odwroc(string ciag){
+    char[] odwrotnosc = ciag.ToCharArray();
+    Array.Reverse(odwrotnosc);
+    return new string(odwrotnosc);
+}
 
-// System.Console.WriteLine(Odwroc("fyrtel poznanski"));
+System.Console.WriteLine(Odwroc("fyrtel poznanski"));
 
-// int DodajNieskonczonosc(params int[] args){
-//     int suma = 0;
-//     for (int i = 0; i < args.Length; i++){
-//         suma += args[i];
-//     }
-//     return suma;
-// }
-// System.Console.WriteLine(DodajNieskonczonosc(1,2,5,7,5,1,7,47,34));
+int DodajNieskonczonosc(params int[] args){
+    int suma = 0;
+    for (int i = 0; i < args.Length; i++){
+        suma += args[i];
+    }
+    return suma;
+}
+System.Console.WriteLine(DodajNieskonczonosc(1,2,5,7,5,1,7,47,34));
 
 
 // Kod z kartki
