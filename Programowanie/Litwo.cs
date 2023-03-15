@@ -3,5 +3,5 @@ using System;
 
 System.Console.WriteLine();
 
-StreamReader read = new StreamReader("Litwa.txt");
+StreamReader read = new StreamReader(".txt/Litwa.txt");
 while(!read.EndOfStream) System.Console.WriteLine(read.ReadLine()+"\t");
