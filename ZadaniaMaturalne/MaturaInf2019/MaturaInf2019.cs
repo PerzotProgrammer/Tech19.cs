@@ -3,8 +3,8 @@ using System;
 
 // zad 4
 
-StreamReader liczby = new StreamReader("MaturaInf2019/liczby.txt");
-StreamWriter wpiszLiczby = new StreamWriter("MaturaInf2019/wyniki4_1.txt");
+StreamReader liczby = new StreamReader("liczby.txt");
+StreamWriter wpiszLiczby = new StreamWriter("wyniki4_1.txt");
 
 
 bool CzyPierwsza(int x){
