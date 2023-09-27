@@ -2,7 +2,6 @@
 CodingArea
 Testing
 Trening
-*.csproj
 obj
 bin
 *temp
