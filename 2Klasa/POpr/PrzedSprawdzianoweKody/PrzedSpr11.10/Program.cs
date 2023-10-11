@@ -1,4 +1,4 @@
-﻿namespace PrzedSpr11_10;
+﻿namespace PrzedSpr11._10;
 # pragma warning disable CS8602
 class Program
 {
