@@ -1,5 +1,4 @@
-﻿using System.Net.Mime;
-namespace Wyjatki;
+﻿namespace Wyjatki;
 
 class Program 
 {
