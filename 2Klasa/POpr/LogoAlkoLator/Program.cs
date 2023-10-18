@@ -1,11 +1,14 @@
-﻿namespace LogoAlkoLator;
+﻿using System.Data;
 
-class Program
+namespace LogoAlkoLator;
+
+static class Program
 {
     static void Main()
     {
         string? user = Logowanie();
-        if (user != "niezalogowany") Trzezwosc(user);
+        bool trzezwosc = Trzezwosc(user);
+        if (trzezwosc) Obliczanie();
     }
     
     // SYSTEM LOGOWANIA
@@ -19,30 +22,27 @@ class Program
         string?[] UsersDB = new string[100];
         string?[] PasswdsDB = new string[100];
         
-        StreamReader Users = new("users.txt");
+        StreamReader users = new("users.txt");
         int index = 0;
-        while (!Users.EndOfStream)
+        while (!users.EndOfStream)
         {
-            UsersDB[index] = Users.ReadLine();
+            UsersDB[index] = users.ReadLine();
             index++;
         }
 
         index = 0;
-        StreamReader Passwds = new("passwds.txt");
-        while (!Passwds.EndOfStream)
+        StreamReader passwds = new("passwds.txt");
+        while (!passwds.EndOfStream)
         {
-            PasswdsDB[index] = Passwds.ReadLine();
+            PasswdsDB[index] = passwds.ReadLine();
             index++;
         }
 
-        bool CzyZalogowany = false;
-        
         for (int i = 0; i < UsersDB.Length; i++)
         {
             if(user == UsersDB[i] && passwd == PasswdsDB[i])
             {
                 Console.WriteLine("Logowanie udane!");
-                CzyZalogowany = true;
                 return user;
             }
         }
@@ -50,13 +50,36 @@ class Program
         Console.WriteLine("Logowanie nieudane!");
         return "niezalogowany";
     }
-
-    // NIE DZIAŁA
+    
     // Sprawdzanie trzeźwości
-    static bool Trzezwosc(string? user)
+    static bool Trzezwosc(string? user = "debug")
     {
-        Random Rand = new();
-        double promil = Rand.NextDouble();
+        Random random = new();
+        int los = random.Next(0,200);
+        float promil = los / 100f;
+        if (promil < 0.2)
+        {
+            Console.WriteLine($"{user} jesteś prawie trzeźwy, masz {promil} promili.");
+            return true;
+        }
+        if (promil < 0.6)
+        {
+            Console.WriteLine($"{user} jesteś prawie pijany, masz {promil} promili, lecz zezwalamy na użycie programu.");
+            return true;
+        }
+        Console.WriteLine($"{user} jesteś pijany, masz {promil} promili i nie możesz korzystać z tego progamu.");
+        return false;
+    }
 
+    // Obliczanie
+    // UWAGA!!! na razie nie obsługuje niepoprawnego działania
+    static void Obliczanie()
+    {
+        Console.WriteLine("To jak już możesz liczyć to daj jakieś działanie matematyczne.");
+        DataTable dataTable = new();
+        Console.Write("Działanie: ");
+        string? expr = Console.ReadLine();
+        var v = dataTable.Compute(expr,"");
+        Console.WriteLine($"Wynik: {v}");
     }
 }
