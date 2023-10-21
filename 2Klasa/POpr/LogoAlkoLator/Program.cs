@@ -41,7 +41,7 @@ static class Program
             string? user = Console.ReadLine();
             Console.Write("Podaj hasło użytkownika: ");
             string? passwd = Console.ReadLine();
-        
+
             for (int i = 0; i < UsersDB.Length; i++)
             {
                 if (user == UsersDB[i] && passwd == PasswdsDB[i])
@@ -50,10 +50,10 @@ static class Program
                     return user;
                 }
             }
+
             Console.WriteLine("Logowanie nieudane!");
             loggedIn = !ContinueLoop("spróbować ponownie się zalogować");
         }
-        
 
         return "niezalogowany";
     }
