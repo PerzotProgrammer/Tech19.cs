@@ -14,11 +14,6 @@ static class Program
     // SYSTEM LOGOWANIA
     static string? Logowanie()
     {
-        Console.Write("Podaj nazwę użytkownika: ");
-        string? user = Console.ReadLine();
-        Console.Write("Podaj hasło użytkownika: ");
-        string? passwd = Console.ReadLine();
-
         string?[] UsersDB = new string[100];
         string?[] PasswdsDB = new string[100];
 
@@ -38,22 +33,35 @@ static class Program
             index++;
         }
 
-        for (int i = 0; i < UsersDB.Length; i++)
-        {
-            if (user == UsersDB[i] && passwd == PasswdsDB[i])
-            {
-                Console.WriteLine("Logowanie udane!");
-                return user;
-            }
-        }
+        bool loggedIn = false;
 
-        Console.WriteLine("Logowanie nieudane!");
+        while (!loggedIn)
+        {
+            Console.Write("Podaj nazwę użytkownika: ");
+            string? user = Console.ReadLine();
+            Console.Write("Podaj hasło użytkownika: ");
+            string? passwd = Console.ReadLine();
+        
+            for (int i = 0; i < UsersDB.Length; i++)
+            {
+                if (user == UsersDB[i] && passwd == PasswdsDB[i])
+                {
+                    Console.WriteLine("Logowanie udane!");
+                    return user;
+                }
+            }
+            Console.WriteLine("Logowanie nieudane!");
+            loggedIn = !ContinueLoop("spróbować ponownie się zalogować");
+        }
+        
+
         return "niezalogowany";
     }
 
     // Sprawdzanie trzeźwości
     static bool Trzezwosc(string? user = "debug")
     {
+        if (user == "niezalogowany") return false;
         Random random = new();
         float promil = random.Next(0, 100) / 100f;
 
@@ -92,12 +100,12 @@ static class Program
         {
             Console.Write("Działanie: ");
             string? expr = Console.ReadLine();
-
+            if (expr == "") expr = "0";
             if (Validate(expr))
             {
                 var v = dataTable.Compute(expr, "");
                 Console.WriteLine($"Wynik: {v}");
-                continueLoop = ContinueLoop();
+                continueLoop = ContinueLoop("obliczyć kolejnie działanie");
             }
             else
             {
@@ -140,9 +148,9 @@ static class Program
     }
 
     // Funkcja pytająca o kontynuacje pętli
-    static bool ContinueLoop()
+    static bool ContinueLoop(string message = "kontynuować")
     {
-        Console.WriteLine("Czy chcesz kontynuować? tak/nie");
+        Console.WriteLine($"Czy chcesz {message}? tak/nie");
         while (true)
         {
             string? wybor = Console.ReadLine();
