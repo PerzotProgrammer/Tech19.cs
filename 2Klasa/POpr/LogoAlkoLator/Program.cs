@@ -4,6 +4,9 @@ namespace LogoAlkoLator;
 
 static class Program
 {
+    // PROGRAM STWORZONY NA ZAJĘCIA PROJEKTOWANIA OPROGRAMOWANIA
+    // Nie jest on stworzony na serio i nie sprawdza poziomu upojenia alkoholowego
+
     static void Main()
     {
         string? user = Logowanie();
@@ -11,12 +14,13 @@ static class Program
         if (trzezwosc) Obliczanie();
     }
 
-    // SYSTEM LOGOWANIA
+    // Funkcja logująca
     static string? Logowanie()
     {
         string?[] UsersDB = new string[100];
         string?[] PasswdsDB = new string[100];
 
+        // Wczytanie plików z danymi
         StreamReader users = new("../../../data/users.txt");
         int index = 0;
         while (!users.EndOfStream)
@@ -35,6 +39,7 @@ static class Program
 
         bool loggedIn = false;
 
+        // Pętla logująca
         while (!loggedIn)
         {
             Console.Write("Podaj nazwę użytkownika: ");
@@ -46,7 +51,7 @@ static class Program
             {
                 if (user == UsersDB[i] && passwd == PasswdsDB[i])
                 {
-                    Console.WriteLine("Logowanie udane!");
+                    Console.WriteLine("Logowanie udane!\n");
                     return user;
                 }
             }
@@ -62,6 +67,7 @@ static class Program
     static bool Trzezwosc(string? user = "debug")
     {
         if (user == "niezalogowany") return false;
+        // Losowanko, losowanko
         Random random = new();
         float promil = random.Next(0, 100) / 100f;
 
@@ -85,6 +91,8 @@ static class Program
         Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine($"{user} jesteś pijany, masz {promil} promili i nie możesz korzystać z tego progamu.");
         Console.ForegroundColor = ConsoleColor.Gray;
+        Console.WriteLine("Naciśnij przycisk aby zamknąć aplikację...");
+        Console.ReadKey();
         return false;
     }
 
@@ -122,12 +130,13 @@ static class Program
         string valids = "1234567890+-*/";
         bool isValid = true;
 
+        // sprawdzenie czy wyrażenie nie jest puste
         if (expr == null) return false;
 
         foreach (var element in expr)
         {
             bool flag = false;
-            foreach (char valid in valids)
+            foreach (char valid in valids) // Sprawdzenie czy wyrażenie ma poprawne znaki
             {
                 if (element == valid) flag = true;
                 if (flag) break;
@@ -141,6 +150,7 @@ static class Program
         }
 
         if (!isValid) return false;
+        // Sprawdzenie czy początek i koniec to poprawny znak lub liczba
         if (!((int.TryParse(expr[0].ToString(), out _) || expr[0] == '+' || expr[0] == '-') &&
               int.TryParse(expr[^1].ToString(), out _))) return false;
 
