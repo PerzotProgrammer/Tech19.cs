@@ -73,24 +73,19 @@ static class Program
 
         if (promil < 0.2)
         {
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine($"{user} jesteś prawie trzeźwy, masz {promil} promili.");
-            Console.ForegroundColor = ConsoleColor.Gray;
+            ColorWrite($"{user} jesteś prawie trzeźwy, masz {promil} promili.", ConsoleColor.Green);
             return true;
         }
 
         if (promil < 0.6)
         {
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine(
-                $"{user} jesteś prawie pijany, masz {promil} promili, lecz zezwalamy na użycie programu.");
-            Console.ForegroundColor = ConsoleColor.Gray;
+            ColorWrite($"{user} jesteś prawie pijany, masz {promil} promili, lecz zezwalamy na użycie programu.",
+                ConsoleColor.Yellow);
             return true;
         }
 
-        Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine($"{user} jesteś pijany, masz {promil} promili i nie możesz korzystać z tego progamu.");
-        Console.ForegroundColor = ConsoleColor.Gray;
+        ColorWrite($"{user} jesteś pijany, masz {promil} promili i nie możesz korzystać z tego progamu.",
+            ConsoleColor.Red);
         Console.WriteLine("Naciśnij przycisk aby zamknąć aplikację...");
         Console.ReadKey();
         return false;
@@ -108,53 +103,32 @@ static class Program
         {
             Console.Write("Działanie: ");
             string? expr = Console.ReadLine();
-            if (expr == "") expr = "0";
-            if (Validate(expr))
+            // Taktyczny try chatch od Pana Szypera
+            try
             {
-                var v = dataTable.Compute(expr, "");
+                var v = dataTable.Compute(expr, "").ToString();
+                double.TryParse(v, out double conv);
+                if (double.IsInfinity(conv)) throw new DivideByZeroException();
                 Console.WriteLine($"Wynik: {v}");
-                continueLoop = ContinueLoop("obliczyć kolejnie działanie");
+                continueLoop = ContinueLoop();
             }
-            else
+            catch (DivideByZeroException)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Niepoprawne działanie!");
-                Console.ForegroundColor = ConsoleColor.Gray;
+                ColorWrite("Nie można podzielić przez 0!", ConsoleColor.Red);
+            }
+            catch (SyntaxErrorException)
+            {
+                ColorWrite("Użyto złego znaku lub nie ma liczby przed lub po znaku!", ConsoleColor.Red);
+            }
+            catch (EvaluateException)
+            {
+                ColorWrite("Nie można obliczyć takiego wyrażenia!", ConsoleColor.Red);
+            }
+            catch (Exception)
+            {
+                ColorWrite("Błąd w wyrażeniu!", ConsoleColor.Red);
             }
         }
-    }
-
-    // Funkcja walidująca poprawność działania matematycznego
-    static bool Validate(string? expr)
-    {
-        string valids = "1234567890+-*/";
-        bool isValid = true;
-
-        // sprawdzenie czy wyrażenie nie jest puste
-        if (expr == null) return false;
-
-        foreach (var element in expr)
-        {
-            bool flag = false;
-            foreach (char valid in valids) // Sprawdzenie czy wyrażenie ma poprawne znaki
-            {
-                if (element == valid) flag = true;
-                if (flag) break;
-            }
-
-            if (!flag)
-            {
-                isValid = false;
-                break;
-            }
-        }
-
-        if (!isValid) return false;
-        // Sprawdzenie czy początek i koniec to poprawny znak lub liczba
-        if (!((int.TryParse(expr[0].ToString(), out _) || expr[0] == '+' || expr[0] == '-') &&
-              int.TryParse(expr[^1].ToString(), out _))) return false;
-
-        return true;
     }
 
     // Funkcja pytająca o kontynuacje pętli
@@ -176,9 +150,14 @@ static class Program
                 return false;
             }
 
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("Podaj prawidłowe dane!");
-            Console.ForegroundColor = ConsoleColor.Gray;
+            ColorWrite("Podaj prawidłowe dane!", ConsoleColor.Red);
         }
+    }
+
+    static void ColorWrite(string message, ConsoleColor color)
+    {
+        Console.ForegroundColor = color;
+        Console.WriteLine(message);
+        Console.ResetColor();
     }
 }
