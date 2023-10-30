@@ -1,8 +1,8 @@
 .vscode
 .vs
 .idea
-Testing
 obj
 bin
 *temp
 *.DotSettings.user
+*.sln
