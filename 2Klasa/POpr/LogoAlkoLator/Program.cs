@@ -7,6 +7,8 @@ static class Program
     // PROGRAM STWORZONY NA ZAJĘCIA PROJEKTOWANIA OPROGRAMOWANIA
     // Nie jest on stworzony na serio i nie sprawdza poziomu upojenia alkoholowego
 
+    static DataTable dataTable = new();
+
     static void Main()
     {
         string? user = Logowanie();
@@ -22,20 +24,11 @@ static class Program
 
         // Wczytanie plików z danymi
         StreamReader users = new("../../../data/users.txt");
-        int index = 0;
-        while (!users.EndOfStream)
-        {
-            UsersDB[index] = users.ReadLine();
-            index++;
-        }
+        for (int i = 0; !users.EndOfStream; i++) UsersDB[i] = users.ReadLine();
 
-        index = 0;
         StreamReader passwds = new("../../../data/passwds.txt");
-        while (!passwds.EndOfStream)
-        {
-            PasswdsDB[index] = passwds.ReadLine();
-            index++;
-        }
+        for (int i = 0; !passwds.EndOfStream; i++) PasswdsDB[i] = passwds.ReadLine();
+
 
         bool loggedIn = false;
 
@@ -67,27 +60,51 @@ static class Program
     static bool Trzezwosc(string? user = "debug")
     {
         if (user == "niezalogowany") return false;
-        // Losowanko, losowanko
+        ColorWrite($"Urzytkowniku {user}, musimy sprawdzić czy nie jesteś pijany.", ConsoleColor.Yellow);
+
+
         Random random = new();
-        float promil = random.Next(0, 100) / 100f;
+        string firstNum = random.Next(-100, 100).ToString();
+        string secNum = random.Next(-100, 100).ToString();
+        string op = random.Next(0, 3).ToString();
 
-        if (promil < 0.2)
+        switch (op)
         {
-            ColorWrite($"{user} jesteś prawie trzeźwy, masz {promil} promili.", ConsoleColor.Green);
+            case "0":
+                op = "+";
+                break;
+            case "1":
+                op = "-";
+                break;
+            case "2":
+                op = "*";
+                break;
+            case "3":
+                op = "/";
+                break;
+            default: // na wszelki wypadek
+                op = "+";
+                break;
+        }
+
+        string expr = firstNum + " " + op + " " + secNum;
+
+        Console.Write($"Podaj wynik działania:\n{expr} = ");
+        float input;
+        while (!float.TryParse(Console.ReadLine(), out input))
+        {
+            ColorWrite("Nie poprawne dane!", ConsoleColor.Red);
+            Console.Write($"Podaj wynik działania:\n{expr} = ");
+        }
+
+        var value = dataTable.Compute(expr, "").ToString();
+        if (Convert.ToSingle(value) == input)
+        {
+            ColorWrite("\nWynik jest poprawny!\nMożesz korzystać z kalkulatora!\n", ConsoleColor.Green);
             return true;
         }
 
-        if (promil < 0.6)
-        {
-            ColorWrite($"{user} jesteś prawie pijany, masz {promil} promili, lecz zezwalamy na użycie programu.",
-                ConsoleColor.Yellow);
-            return true;
-        }
-
-        ColorWrite($"{user} jesteś pijany, masz {promil} promili i nie możesz korzystać z tego progamu.",
-            ConsoleColor.Red);
-        Console.WriteLine("Naciśnij przycisk aby zamknąć aplikację...");
-        Console.ReadKey();
+        ColorWrite("\nWynik niepoprawny!\nAlbo nie umiesz liczyć, albo jesteś pijany!\n", ConsoleColor.Red);
         return false;
     }
 
@@ -97,7 +114,6 @@ static class Program
         bool continueLoop = true;
 
         Console.WriteLine("To jak już możesz liczyć to daj jakieś działanie matematyczne.");
-        DataTable dataTable = new();
 
         while (continueLoop)
         {
@@ -106,10 +122,10 @@ static class Program
             // Taktyczny try chatch od Pana Szypera
             try
             {
-                var v = dataTable.Compute(expr, "").ToString();
-                double.TryParse(v, out double conv);
+                var value = dataTable.Compute(expr, "").ToString();
+                double.TryParse(value, out double conv);
                 if (double.IsInfinity(conv)) throw new DivideByZeroException();
-                Console.WriteLine($"Wynik: {v}");
+                Console.WriteLine($"Wynik: {value}");
                 continueLoop = ContinueLoop();
             }
             catch (DivideByZeroException)
