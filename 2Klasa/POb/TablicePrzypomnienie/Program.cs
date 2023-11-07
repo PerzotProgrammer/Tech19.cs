@@ -5,6 +5,7 @@ class Program
     static void Main()
     {
         Zadanie1();
+        Console.WriteLine("----------------------------------");
         Zadanie2();
     }
 
@@ -45,16 +46,11 @@ class Program
         //     Użyj pętli foreach, aby dodać do sumy każdy element tablicy numbers i zwrócić sumę.
         //     Wywołaj metodę CalculateSum(numbers) i przypisz jej wynik do zmiennej sum.
         //     Wyświetl na ekranie komunikat, który pokazuje sumę podanych liczb.
-        
-        int[] Tab = new int[5];
 
-        for (int i = 0; i < Tab.Length; i++)
-        {
-            int add = GetIntFromUser(i);
-            
-            Tab[i] = add;
-        }
-        
+        int[] Numbers = new int[5];
+
+        for (int i = 0; i < Numbers.Length; i++) Numbers[i] = GetIntFromUser(i);
+        Console.WriteLine($"Suma liczb w tablicy: {CalculateSumFromArray(Numbers)}");
     }
 
     static int GetIntFromUser(int index)
@@ -69,7 +65,14 @@ class Program
 
         return numb;
     }
-    
+
+    static int CalculateSumFromArray(int[] Array)
+    {
+        int sum = 0;
+        foreach (int number in Array) sum += number;
+        return sum;
+    }
+
     static void ColorWrite(string? message, ConsoleColor consoleColor)
     {
         Console.ForegroundColor = consoleColor;
