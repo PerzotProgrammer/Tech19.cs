@@ -68,6 +68,7 @@ class Program
         for (int i = 0; i < 6; i++)
         {
             List<char> used = new();
+            string buffer = "";
             for (int j = 0; j < 3; j++)
             {
                 bool flag = true;
@@ -82,9 +83,12 @@ class Program
                     else now = samogloski[random.Next(0, samogloski.Count)];
                 }
 
-                outputs[i] += now;
+                buffer += now;
                 used.Add(now);
             }
+
+            if (outputs.Contains(buffer)) i--;
+            else outputs[i] = buffer;
         }
 
         foreach (string output in outputs) Console.WriteLine(output);
