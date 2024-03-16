@@ -1,4 +1,6 @@
-﻿namespace ZadanieDodatkowe;
+﻿using ZadanieDodatkowe.Classes;
+
+namespace ZadanieDodatkowe;
 
 class Program
 {
@@ -220,10 +222,35 @@ class Program
         // 8. Stwórz graf składający się z 6 wierzchołków i 7 krawędzi. 
         //     Wypisz najwyższy stopień wierzchołka. Jeśli kilka wierzchołków ma ten sam stopień
         //     to wypisz dowolny z nich.
-   
-        throw new NotImplementedException();
+
+        Graph graph = new();
+
+        Node n1 = new(1);
+        Node n2 = new(2);
+        Node n3 = new(3);
+        Node n4 = new(4);
+        Node n5 = new(5);
+        Node n6 = new(6);
         
-        // Potem zrobie Zzz
+        graph.AddToGraph(n1);
+        graph.AddToGraph(n2);
+        graph.AddToGraph(n3);
+        graph.AddToGraph(n4);
+        graph.AddToGraph(n5);
+        graph.AddToGraph(n6);
+        
+        n1.MakeJoints(n5);
+        n1.MakeJoints(n2);
+        n2.MakeJoints(n5);
+        n2.MakeJoints(n3);
+        n3.MakeJoints(n4);
+        n4.MakeJoints(n5);
+        n4.MakeJoints(n6);
+
+        graph.PrintJoints();
+        Console.Write("Najwyższy lolu: ");
+        Console.WriteLine(graph.FindHighestDegree());
+
     }
 
     static bool IsPrime(int integer)
@@ -263,47 +290,5 @@ class Program
         Console.ForegroundColor = color;
         Console.WriteLine(message);
         Console.ResetColor();
-    }
-}
-
-struct Person // Trochę ungabunga
-{
-    private string Name;
-    private string SName;
-    private int Age;
-
-    public Person()
-    {
-        string name = "A" + RandomStringGenerator(3);
-        Name = name;
-        string rev = "";
-        for (int i = name.Length - 1; i >= 0; i--)
-        {
-            rev += name[i];
-        }
-
-        SName = rev;
-        Random random = new();
-        Age = random.Next(20, 50);
-    }
-
-    public string GetInfo()
-    {
-        return $"Name: {Name} SName: {SName} Age: {Age}";
-    }
-
-    private string RandomStringGenerator(int lengthOfString)
-    {
-        string chars = "abcdefghijklmnopqrstuvwxyz";
-        char[] stringChars = new char[lengthOfString];
-        Random random = new();
-
-        for (int i = 0; i < stringChars.Length; i++)
-        {
-            stringChars[i] = chars[random.Next(chars.Length)];
-        }
-
-        string finalString = new(stringChars);
-        return finalString;
     }
 }
