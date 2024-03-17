@@ -5,14 +5,13 @@ public class Node
     private List<int> Joints;
     private int Value;
 
-    public Node(int value, Graph graph)
+    public Node(int value)
     {
         Value = value;
         Joints = new();
-        graph.AddToGraph(this);
     }
 
-    public void MakeJoints(Node node)
+    public void MakeJoint(Node node)
     {
         Joints.Add(node.Value);
         node.Joints.Add(Value);

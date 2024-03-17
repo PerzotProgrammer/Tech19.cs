@@ -2,16 +2,21 @@
 
 public class Graph
 {
-    private List<Node> Nodes;
+    public List<Node> Nodes;
 
-    public Graph()
+    public Graph(params Node[] nodes)
     {
-        Nodes = new();
+        Nodes = new(nodes);
     }
 
-    public void AddToGraph(Node node)
+    public void AddToGraph(Node node) // możnaby usunąć, lecz wtedy wierzchołki tylko w ctorze
     {
         Nodes.Add(node);
+    }
+
+    public void MakeJoints(int firstNodeIndex, int SecondNodeIndex)
+    {
+        Nodes[firstNodeIndex].MakeJoint(Nodes[SecondNodeIndex]);
     }
 
     public int FindHighestDegree()
