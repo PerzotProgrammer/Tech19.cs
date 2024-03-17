@@ -6,13 +6,13 @@ class Program
 {
     static void Main()
     {
-        // Zad1();
-        // Zad2();
-        // Zad3();
-        // Zad4();
-        // Zad5();
-        // Zad6();
-        // Zad7();
+        Zad1();
+        Zad2();
+        Zad3();
+        Zad4();
+        Zad5();
+        Zad6();
+        Zad7();
         Zad8();
     }
 
@@ -216,19 +216,12 @@ class Program
 
         Graph graph = new(new(1), new(2), new(3), new(4), new(5), new(6));
 
-        // graph.Nodes[0].MakeJoints(graph.Nodes[4]);
         graph.MakeJoints(0, 4);
-        // graph.Nodes[0].MakeJoints(graph.Nodes[1]);
         graph.MakeJoints(0, 1);
-        // graph.Nodes[1].MakeJoints(graph.Nodes[4]);
         graph.MakeJoints(1, 4);
-        // graph.Nodes[1].MakeJoints(graph.Nodes[2]);
         graph.MakeJoints(1, 2);
-        // graph.Nodes[2].MakeJoints(graph.Nodes[3]);
         graph.MakeJoints(2, 3);
-        // graph.Nodes[3].MakeJoints(graph.Nodes[4]);
         graph.MakeJoints(3, 4);
-        // graph.Nodes[3].MakeJoints(graph.Nodes[5]);
         graph.MakeJoints(3, 5);
 
         graph.PrintJoints();
