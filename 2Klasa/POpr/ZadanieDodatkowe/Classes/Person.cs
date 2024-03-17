@@ -10,13 +10,9 @@ struct Person // Trochę ungabunga
     {
         string name = "A" + RandomStringGenerator(3);
         Name = name;
-        string rev = "";
-        for (int i = name.Length - 1; i >= 0; i--)
-        {
-            rev += name[i];
-        }
-
-        SName = rev;
+        char[] nameChr = name.ToCharArray();
+        Array.Reverse(nameChr);
+        SName = new string(nameChr);
         Random random = new();
         Age = random.Next(20, 50);
     }
@@ -31,12 +27,7 @@ struct Person // Trochę ungabunga
         string chars = "abcdefghijklmnopqrstuvwxyz";
         char[] stringChars = new char[lengthOfString];
         Random random = new();
-
-        for (int i = 0; i < stringChars.Length; i++)
-        {
-            stringChars[i] = chars[random.Next(chars.Length)];
-        }
-
+        for (int i = 0; i < stringChars.Length; i++) stringChars[i] = chars[random.Next(chars.Length)];
         string finalString = new(stringChars);
         return finalString;
     }

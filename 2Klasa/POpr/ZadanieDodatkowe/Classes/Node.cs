@@ -4,11 +4,12 @@ public class Node
 {
     private List<int> Joints;
     private int Value;
-    
-    public Node(int value)
+
+    public Node(int value, Graph graph)
     {
         Value = value;
         Joints = new();
+        graph.AddToGraph(this);
     }
 
     public void MakeJoints(Node node)

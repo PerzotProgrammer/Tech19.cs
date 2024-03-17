@@ -83,9 +83,7 @@ class Program
 
         Console.Write("Podaj stringa lolu: ");
         string part = Console.ReadLine()!;
-
         char[] partChr = part.ToLower().ToCharArray(); //Po co? można na stringu jechać
-
         Dictionary<char, int> freq = new();
 
         foreach (char c in partChr)
@@ -142,18 +140,15 @@ class Program
         Person[] persons = { new(), new(), new(), new() };
 
         Console.WriteLine("Twoi ludzie lolu:");
-        foreach (Person person in persons)
-        {
-            Console.WriteLine(person.GetInfo());
-        }
+        foreach (Person person in persons) Console.WriteLine(person.GetInfo());
     }
 
     static void Zad5()
     {
         // 5. Utwórz kolejkę liczb doskonałych 
-        //         (liczby które równają się sumie swoich dzielników właściwych). 
-        //     Umieść w niej 4 najmniejszych liczb doskonałych.
-        //     Wyświtl kolejkę, usuń z niej 2 liczby i znów wyświtl to co zostało.
+        // (liczby które równają się sumie swoich dzielników właściwych). 
+        // Umieść w niej 4 najmniejszych liczb doskonałych.
+        // Wyświtl kolejkę, usuń z niej 2 liczby i znów wyświtl to co zostało.
 
         Queue<int> queue = new();
         int num = 1;
@@ -174,7 +169,7 @@ class Program
     static void Zad6()
     {
         // 6. Stwórz stos nieparzystych dwucyfrowych wieloktorności liczby 13.
-        //     Usuń z tego stosu 2 liczby i wyświetl znów ten stos 
+        // Usuń z tego stosu 2 liczby i wyświetl znów ten stos 
         // dziwiąc się temu co na nim zostało.
 
         Stack<int> stack = new();
@@ -195,9 +190,9 @@ class Program
     static void Zad7()
     {
         // 7. Kod Hufmanna to zamiana ciągu w stylu AAAAABBBBBBBCCC na 5A7B3C.
-        //     Niech user poda wam n ciągów które zapiszecie to zwykłej tablicy.
-        //     Potem przenieście te dane do słowinika, gdzie kluczem będzie kod ciągu
-        //     a wartością ten ciąg.
+        // Niech user poda wam n ciągów które zapiszecie to zwykłej tablicy.
+        // Potem przenieście te dane do słowinika, gdzie kluczem będzie kod ciągu
+        // a wartością ten ciąg.
 
         Dictionary<char, int> freq = new();
         Console.Write("Daj coś dla Hufmanna: ");
@@ -209,48 +204,29 @@ class Program
         }
 
         string postHufmann = "";
-        foreach (KeyValuePair<char, int> pair in freq)
-        {
-            postHufmann += pair.Value.ToString() + pair.Key;
-        }
-
+        foreach (KeyValuePair<char, int> pair in freq) postHufmann += pair.Value.ToString() + pair.Key;
         Console.WriteLine($"Twój Hufmann: {postHufmann}");
     }
 
     static void Zad8()
     {
         // 8. Stwórz graf składający się z 6 wierzchołków i 7 krawędzi. 
-        //     Wypisz najwyższy stopień wierzchołka. Jeśli kilka wierzchołków ma ten sam stopień
-        //     to wypisz dowolny z nich.
+        // Wypisz najwyższy stopień wierzchołka. Jeśli kilka wierzchołków ma ten sam stopień
+        // to wypisz dowolny z nich.
 
         Graph graph = new();
+        Node[] nodes = { new(1, graph), new(2, graph), new(3, graph), new(4, graph), new(5, graph), new(6, graph) };
 
-        Node n1 = new(1);
-        Node n2 = new(2);
-        Node n3 = new(3);
-        Node n4 = new(4);
-        Node n5 = new(5);
-        Node n6 = new(6);
-        
-        graph.AddToGraph(n1);
-        graph.AddToGraph(n2);
-        graph.AddToGraph(n3);
-        graph.AddToGraph(n4);
-        graph.AddToGraph(n5);
-        graph.AddToGraph(n6);
-        
-        n1.MakeJoints(n5);
-        n1.MakeJoints(n2);
-        n2.MakeJoints(n5);
-        n2.MakeJoints(n3);
-        n3.MakeJoints(n4);
-        n4.MakeJoints(n5);
-        n4.MakeJoints(n6);
+        nodes[0].MakeJoints(nodes[4]);
+        nodes[0].MakeJoints(nodes[1]);
+        nodes[1].MakeJoints(nodes[4]);
+        nodes[1].MakeJoints(nodes[2]);
+        nodes[2].MakeJoints(nodes[3]);
+        nodes[3].MakeJoints(nodes[4]);
+        nodes[3].MakeJoints(nodes[5]);
 
         graph.PrintJoints();
-        Console.Write("Najwyższy lolu: ");
-        Console.WriteLine(graph.FindHighestDegree());
-
+        Console.WriteLine($"Najwyższy lolu: {graph.FindHighestDegree()}");
     }
 
     static bool IsPrime(int integer)
@@ -277,11 +253,7 @@ class Program
 
     static void PrintArray<T>(IEnumerable<T> arr)
     {
-        foreach (T i in arr)
-        {
-            Console.Write($"{i}, ");
-        }
-
+        foreach (T i in arr) Console.Write($"{i}, ");
         Console.WriteLine();
     }
 
