@@ -14,9 +14,9 @@ public class Graph
         Nodes.Add(node);
     }
 
-    public void MakeJoints(int firstNodeIndex, int SecondNodeIndex)
+    public void MakeJoints(int firstNodeIndex, int secondNodeIndex)
     {
-        Nodes[firstNodeIndex].MakeJoint(Nodes[SecondNodeIndex]);
+        Nodes[firstNodeIndex].MakeJoint(Nodes[secondNodeIndex]);
     }
 
     public int FindHighestDegree()
