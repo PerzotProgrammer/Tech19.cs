@@ -2,6 +2,7 @@ namespace SamochodyCiagDalszy.Classes;
 
 public enum DriveType
 {
+    Unknown,
     Petrol,
     Diesel,
     Electric,
@@ -39,7 +40,7 @@ public class Car
     public string GetInfo()
     {
         return
-            $"Brand: {Brand}\nModel: {Model}\nYearOfProduction: {YearOfProduction}\nEngineCapacity: {EngineCapacity}\nDateOfFirstRegistration: {DateOfFirstRegistration}\nDriveType: {DriveType}";
+            $"Brand: {Brand}\nModel: {Model}\nYearOfProduction: {YearOfProduction}\nEngineCapacity: {EngineCapacity}\nDateOfFirstRegistration: {DateOfFirstRegistration.ToShortDateString()}\nDriveType: {DriveType}";
     }
 
     public int GetAge()
