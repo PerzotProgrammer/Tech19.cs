@@ -11,11 +11,7 @@ class Program
     static void Main()
     {
         Console.WriteLine("Witaj w menu wyboru samochodów!");
-        while (loopFlag)
-        {
-            Menu();
-        }
-
+        while (loopFlag) Menu();
         Console.WriteLine("Naciśnij przycisk aby zamknąć program...");
         Console.ReadKey();
     }
@@ -59,7 +55,7 @@ class Program
                 loopFlag = false;
                 break;
             case "8": // DEBUG
-                AddPlaceholders(1);
+                AddPlaceholder();
                 break;
             default:
                 ColorPrint("\nNIEPOPRAWNA OPCJA!", ConsoleColor.Red);
@@ -69,33 +65,35 @@ class Program
 
     static void AddCar()
     {
-        string brand;
-        string model;
-        int yearOfProduction;
-        float engineCapacity;
-        DateTime dateOfFirstRegistration;
-        DriveType driveType;
-
         try
         {
             Console.Write("Podaj markę: ");
-            brand = Console.ReadLine()!;
+            string brand = Console.ReadLine()!;
+
             Console.Write("Podaj model: ");
-            model = Console.ReadLine()!;
+            string model = Console.ReadLine()!;
+
             Console.Write("Podaj rok produkcji: ");
-            yearOfProduction = int.Parse(Console.ReadLine()!);
+            int yearOfProduction = int.Parse(Console.ReadLine()!);
+
             Console.Write("Podaj pojemność silnika (po przecinku): ");
-            engineCapacity = float.Parse(Console.ReadLine()!);
+            float engineCapacity = float.Parse(Console.ReadLine()!);
+
             Console.WriteLine("Podaj datę rejestracji:");
             Console.Write("Dzień: ");
             int day = int.Parse(Console.ReadLine()!);
+
             Console.Write("Miesiąc: ");
             int month = int.Parse(Console.ReadLine()!);
+
             Console.Write("Rok: ");
             int year = int.Parse(Console.ReadLine()!);
-            dateOfFirstRegistration = new(year, month, day);
+
+            DateTime dateOfFirstRegistration = new(year, month, day);
+
             Console.Write("Podaj typ napędu (Petrol, Diesel, Electric, Hybrid): ");
-            driveType = (DriveType)Enum.Parse(typeof(DriveType), Console.ReadLine()!);
+            DriveType driveType = (DriveType)Enum.Parse(typeof(DriveType), Console.ReadLine()!);
+
             Cars.Add(new(brand, model, yearOfProduction, engineCapacity, dateOfFirstRegistration, driveType));
             ColorPrint("GOTOWE!", ConsoleColor.Green);
         }
@@ -129,6 +127,7 @@ class Program
             {
                 Console.Write($"Wybierz odpowiedni samochód (1 - {Cars.Count}): ");
                 int select = int.Parse(Console.ReadLine()!) - 1;
+
                 Console.WriteLine($"Wiek samochodu nr {select + 1} wynosi {Cars[select].GetAge()} lat");
             }
             catch (Exception)
@@ -150,9 +149,11 @@ class Program
             {
                 Console.Write($"Wybierz odpowiedni samochód (1 - {Cars.Count}): ");
                 int select = int.Parse(Console.ReadLine()!) - 1;
+
                 string message = Cars[select].IsClassic()
                     ? "Tak, samochód jest klasykiem"
                     : "Nie, samochód nie jest klasykiem";
+
                 Console.WriteLine(message);
             }
             catch (Exception)
@@ -168,7 +169,24 @@ class Program
 
     static void PrintDataJSON()
     {
-        Console.WriteLine("Do zaimplementowania");
+        if (Cars.Count > 0)
+        {
+            try
+            {
+                Console.Write($"Wybierz odpowiedni samochód (1 - {Cars.Count}): ");
+                int select = int.Parse(Console.ReadLine()!) - 1;
+
+                Console.WriteLine(Cars[select].GetInfoJSON());
+            }
+            catch (Exception)
+            {
+                ColorPrint("NIEPOPRAWNE DANE!", ConsoleColor.Red);
+                Console.WriteLine("Spróbuj jeszcze raz");
+                Console.WriteLine();
+                PrintDataJSON();
+            }
+        }
+        else Console.WriteLine("Nie ma jeszcze żadnych samochodów w systemie");
     }
 
     static void CalculateCompsumtion()
@@ -177,12 +195,15 @@ class Program
         {
             Console.Write("Podaj poziom paliwa (l, przecinek): ");
             float fuelLvl = float.Parse(Console.ReadLine()!);
+
             Console.Write("Podaj przebytą trasę (km, przecinek): ");
             float distance = float.Parse(Console.ReadLine()!);
+
             Console.Write($"Wybierz odpowiedni samochód (1 - {Cars.Count}): ");
             int select = int.Parse(Console.ReadLine()!) - 1;
+
             Console.WriteLine(
-                $"Spalanie dla samochodu nr {select + 1} to {Cars[select].AvgFuelUsage(fuelLvl, distance)} dm^3/km");
+                $"Spalanie dla samochodu nr {select + 1} to {Cars[select].AvgFuelUsage(fuelLvl, distance) * 100} dm^3/100 km");
         }
         catch (Exception)
         {
@@ -193,12 +214,26 @@ class Program
         }
     }
 
-    static void AddPlaceholders(int numOfPlaceholders)
+    static void AddPlaceholder()
     {
-        for (int i = 0; i < numOfPlaceholders; i++)
-        {
-            Cars.Add(new());
-        }
+        Random random = new();
+        Cars.Add(new(RandomStringGenerator(random.Next(3, 10)),
+            RandomStringGenerator(random.Next(3, 10)),
+            random.Next(1950, DateTime.Now.Year),
+            (float)Math.Round(random.NextSingle(), 2, MidpointRounding.ToZero),
+            new(random.Next(1950, DateTime.Now.Year - 1), random.Next(1, 12), random.Next(1, 28)),
+            (DriveType)random.Next(1, 4)));
+
+        ColorPrint("Użyto narzędzi Debugu!", ConsoleColor.Yellow);
+    }
+
+    static string RandomStringGenerator(int lengthOfString)
+    {
+        Random random = new();
+        string valids = "ABCDEFGHIJKLMNOPQRSTUWXYZabcdefghijklmnopqrstuwxyz";
+        string output = "";
+        for (int i = 0; i < lengthOfString; i++) output += valids[random.Next(0, valids.Length)];
+        return output;
     }
 
     static void ColorPrint(string message, ConsoleColor consoleColor)

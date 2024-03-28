@@ -1,3 +1,5 @@
+using System.Text.Json;
+
 namespace SamochodyCiagDalszy.Classes;
 
 public enum DriveType
@@ -11,19 +13,20 @@ public enum DriveType
 
 public class Car
 {
-    private string Brand;
-    private string Model;
-    private int NumOfWheels = 4;
-    private int YearOfProduction;
-    private float EngineCapacity;
-    private DateTime DateOfFirstRegistration;
-    private DriveType DriveType;
+    public string Brand { get; set; }
+    public string Model { get; set; }
+    public int NumOfWheels { get; set; }
+    public int YearOfProduction { get; set; }
+    public float EngineCapacity { get; set; }
+    public DateTime DateOfFirstRegistration { get; set; }
+    public DriveType DriveType { get; set; }
 
     public Car()
     {
         Brand = "Unknown";
         Model = "Unknown";
         YearOfProduction = 0;
+        NumOfWheels = 4;
     }
 
     public Car(string brand, string model, int yearOfProduction, float engineCapacity, DateTime dateOfFirstRegistration,
@@ -31,6 +34,7 @@ public class Car
     {
         Brand = brand;
         Model = model;
+        NumOfWheels = 4;
         YearOfProduction = yearOfProduction;
         EngineCapacity = engineCapacity;
         DateOfFirstRegistration = dateOfFirstRegistration;
@@ -59,10 +63,9 @@ public class Car
         return GetAge() > 35;
     }
 
-    public void GetInfoJSON()
+    public string GetInfoJSON()
     {
-        throw new NotImplementedException();
-        // TODO w domu: nie mieliśmy jeszcze konwersji na JSONa
+        return JsonSerializer.Serialize(this);
     }
 
     public float AvgFuelUsage(float amountOfFuel, float kilometersTraveled)
