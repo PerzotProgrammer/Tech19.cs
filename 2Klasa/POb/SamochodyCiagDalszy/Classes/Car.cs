@@ -1,4 +1,5 @@
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace SamochodyCiagDalszy.Classes;
 
@@ -13,13 +14,14 @@ public enum DriveType
 
 public class Car
 {
-    public string Brand { get; set; }
-    public string Model { get; set; }
-    public int NumOfWheels { get; set; }
-    public int YearOfProduction { get; set; }
-    public float EngineCapacity { get; set; }
-    public DateTime DateOfFirstRegistration { get; set; }
-    public DriveType DriveType { get; set; }
+    // JsonInclude ponieważ Serializer nie używa domyślnie prywatnych pól
+    [JsonInclude] private string Brand;
+    [JsonInclude] private string Model;
+    [JsonInclude] private int NumOfWheels;
+    [JsonInclude] private int YearOfProduction;
+    [JsonInclude] private float EngineCapacity;
+    [JsonInclude] private DateTime DateOfFirstRegistration;
+    [JsonInclude] private DriveType DriveType;
 
     public Car()
     {
