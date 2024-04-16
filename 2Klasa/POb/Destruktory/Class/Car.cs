@@ -15,7 +15,7 @@ public class Car
         DamageType = "";
     }
 
-    public void RandomDamage()
+    private void RandomDamage()
     {
         Random random = new();
         int rand = random.Next(1, 10);

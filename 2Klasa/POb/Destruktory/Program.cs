@@ -4,7 +4,7 @@ namespace Destruktory;
 
 class Program
 {
-    static Dictionary<int, Car> CarsDict = new();
+    static Dictionary<int, Car?> CarsDict = new();
     static bool LoopFlag = true;
 
     static void Main()
@@ -62,17 +62,29 @@ class Program
 
     static void ShowCars()
     {
+        if (CarsDict.Count == 0)
+        {
+            Console.WriteLine("Nie ma na liście żadnego samochodu!");
+            return;
+        }
+
         Console.WriteLine("Lista samochodów:");
-        foreach (KeyValuePair<int, Car> pair in CarsDict) Console.WriteLine($"{pair.Key}: {pair.Value.GetName()}");
+        foreach (KeyValuePair<int, Car?> pair in CarsDict) Console.WriteLine($"{pair.Key}: {pair.Value!.GetName()}");
     }
 
     static void DriveSelectedCar()
     {
+        if (CarsDict.Count == 0)
+        {
+            Console.WriteLine("Nie ma na liście żadnego samochodu!");
+            return;
+        }
+
         try
         {
             Console.Write($"Wybierz samochód(1 - {CarsDict.Count}): ");
             int select = int.Parse(Console.ReadLine()!);
-            CarsDict[select].Drive();
+            CarsDict[select]!.Drive();
         }
         catch (Exception)
         {
@@ -82,12 +94,20 @@ class Program
 
     static void DestroyCar()
     {
+        if (CarsDict.Count == 0)
+        {
+            Console.WriteLine("Nie ma na liście żadnego samochodu!");
+            return;
+        }
+
         try
         {
             Console.Write($"Wybierz samochód(1 - {CarsDict.Count}): ");
             int select = int.Parse(Console.ReadLine()!);
+            CarsDict[select] = null;
             CarsDict.Remove(select);
             Console.WriteLine("Samochód został zniszczony");
+            GC.Collect();
         }
         catch (Exception)
         {
