@@ -6,7 +6,7 @@ class Program
     {
         Zad0();
         Zad1();
-        Zad2(); // 99% działa
+        Zad2(); // Teraz działa :P
         Zad3();
     }
 
@@ -63,7 +63,7 @@ class Program
         List<List<List<int>>> cube = new();
         Random random = new();
 
-        int size = 5;
+        int size = 7;
         for (int i = 0; i < size; i++)
         {
             List<List<int>> dim1 = new();
@@ -82,8 +82,6 @@ class Program
             cube.Add(dim1);
         }
 
-        PrintCube(cube);
-
         int sum = 0;
         for (int i = 0; i < size; i++)
         {
@@ -93,13 +91,25 @@ class Program
                 List<int> dim2 = dim1[j];
                 for (int k = 0; k < size; k++)
                 {
-                    if ((k == 0 || k == size - 1) && (j == 0 || j == size - 1) ||
-                        (j - i == 0 && j == k || j + i == size - 1 && j == k))
+                    if ((k == 0 || k == size - 1) && (j == 0 || j == size - 1) && (i == 0 || i == size - 1) ||
+                        (j - i == 0 && j == k || j + i == size - 1 && j == k) || (j + k == size - 1 && i == j) ||
+                        (j + i == size - 1 && i == k))
                     {
                         sum += dim2[k];
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write($"{dim2[k]}, ");
+                        Console.ResetColor();
+                    }
+                    else
+                    {
+                        Console.Write($"{dim2[k]}, ");
                     }
                 }
+
+                Console.WriteLine();
             }
+
+            Console.WriteLine();
         }
 
         Console.WriteLine(sum);
@@ -109,9 +119,9 @@ class Program
     {
         Console.Write("Podaj ilość wierzchołków: ");
         int n = int.Parse(Console.ReadLine()!);
-        
+
         Dictionary<int, bool[]> graph = new();
-        
+
         for (int i = 1; i <= n; i++)
         {
             bool[] holder = new bool[n + 1];
@@ -119,7 +129,7 @@ class Program
 
             graph.Add(i, holder);
         }
-        
+
         MakeJoints(graph, 2, 4);
         MakeJoints(graph, 4, 3);
         PrintGraph(graph);
@@ -191,7 +201,7 @@ class Program
         Console.WriteLine("Nie znaleziono połączenia");
     }
 
-    
+
     // Śmieszne printy, aby nie było powtórek kodu
     static void PrintArray<T>(IEnumerable<T> arr)
     {
@@ -199,25 +209,6 @@ class Program
         Console.WriteLine();
     }
 
-    static void PrintCube(List<List<List<int>>> cube)
-    {
-        foreach (List<List<int>> dim1 in cube)
-        {
-            foreach (List<int> dim2 in dim1)
-            {
-                foreach (int i in dim2)
-                {
-                    Console.Write($"{i},");
-                }
-
-                Console.WriteLine();
-            }
-
-            Console.WriteLine();
-        }
-
-        Console.WriteLine();
-    }
 
     static void PrintGraph(Dictionary<int, bool[]> graph)
     {
