@@ -1,8 +1,17 @@
-.vscode
+# Pliki
+*.temp.*
+*.test.*
+*.user
+*.sln
+*.exe
+
+
+# Foldery
 .vs
+.vscode
 .idea
 obj
 bin
-*temp
-*.user
-*.sln
+Trening
+Test
+Gitignore
