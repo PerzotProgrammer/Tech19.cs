@@ -1,13 +1,18 @@
 namespace Dziedziczenie.Classes;
 
-public class Car : Vehicle
+public class Tank : Vehicle
 {
-    public Car(string brand, string model, int numberOfSeats, FuelType fuelType = FuelType.Petrol) :
+    private int AmmunitionCount;
+
+    public Tank(string brand, string model, int numberOfSeats, int ammunitionCount,
+        FuelType fuelType = FuelType.Diesel) :
         base(brand, model, numberOfSeats)
     {
-        VehicleType = "Samochód";
-        MinimumFuelToStart = 10;
+        VehicleType = "Czołg";
+        NumberOfSeats = numberOfSeats;
         FuelType = fuelType;
+        MinimumFuelToStart = 50f;
+        AmmunitionCount = ammunitionCount;
     }
 
     public override void StartEngine()
@@ -26,5 +31,17 @@ public class Car : Vehicle
 
         StartEngine();
         Console.WriteLine($"{VehicleType} {Brand} {Model} jedzie!");
+    }
+
+    public void Shoot()
+    {
+        if (AmmunitionCount <= 0)
+        {
+            Console.WriteLine($"{VehicleType} nie ma pocisków!");
+            return;
+        }
+
+        AmmunitionCount--;
+        Console.WriteLine($"{VehicleType} strzelił z działa!");
     }
 }
