@@ -1,4 +1,4 @@
-namespace Budowa.Classes;
+namespace Budowa.Classes.Vehicles;
 
 public abstract class Vehicle
 {
@@ -20,16 +20,17 @@ public abstract class Vehicle
 
     public abstract void Work();
 
-    protected string GetLongName()
-    {
-        return $"{VehicleType.ToString()} {Model} {Brand}";
-    }
-
     protected bool CheckFuel()
     {
         if (CurrentFuelLevel < FuelToStart) return false;
         return true;
     }
+
+    public string GetLongName()
+    {
+        return $"{VehicleType.ToString()} {Model} {Brand}";
+    }
+
 
     public void StartEngine()
     {

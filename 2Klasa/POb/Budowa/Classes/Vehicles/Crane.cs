@@ -1,4 +1,4 @@
-namespace Budowa.Classes;
+namespace Budowa.Classes.Vehicles;
 
 public class Crane : Vehicle
 {

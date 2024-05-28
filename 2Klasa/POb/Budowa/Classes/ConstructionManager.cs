@@ -1,3 +1,5 @@
+using Budowa.Classes.Vehicles;
+
 namespace Budowa.Classes;
 
 public class ConstructionManager
@@ -55,27 +57,21 @@ public class ConstructionManager
         {
             case VehicleType.Excavator:
                 Vehicles.Add(new Excavator(model, brand));
-                Console.WriteLine($"Dodano {vehicleType.ToString()} {model} {brand}");
                 break;
             case VehicleType.Trolley:
                 Vehicles.Add(new Trolley(model, brand));
-                Console.WriteLine($"Dodano {vehicleType.ToString()} {model} {brand}");
                 break;
             case VehicleType.Crane:
                 Vehicles.Add(new Crane(model, brand));
-                Console.WriteLine($"Dodano {vehicleType.ToString()} {model} {brand}");
                 break;
             case VehicleType.Tractor:
                 Vehicles.Add(new Tractor(model, brand));
-                Console.WriteLine($"Dodano {vehicleType.ToString()} {model} {brand}");
                 break;
             case VehicleType.ConcreteMixer:
                 Vehicles.Add(new ConcreteMixer(model, brand));
-                Console.WriteLine($"Dodano {vehicleType.ToString()} {model} {brand}");
-                break;
-            default:
-                Console.WriteLine("Nie ma takiego typu maszyny!");
                 break;
         }
+
+        Console.WriteLine($"Dodano {vehicleType.ToString()} {model} {brand}");
     }
 }
