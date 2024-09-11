@@ -28,6 +28,18 @@ public partial class MainWindow : Window
 
     private void Quit_OnClick(object sender, RoutedEventArgs e)
     {
-        Close();
+        MessageBoxResult result = MessageBox.Show("Czy na pewno chcesz wyjść?", "Wyjście", MessageBoxButton.YesNo,
+            MessageBoxImage.Question);
+        if (result == MessageBoxResult.Yes) Close();
+    }
+
+    private void GoTo2_OnClick(object sender, RoutedEventArgs e)
+    {
+        UserData userData = new UserData();
+        userData.Show();
+    }
+
+    private void GoTo3_OnClick(object sender, RoutedEventArgs e)
+    {
     }
 }

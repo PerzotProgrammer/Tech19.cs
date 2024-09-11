@@ -11,17 +11,20 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="0" FontSize="50px" TextAlignment="Center">Imie</TextBlock>
+        <TextBlock Grid.Row="0" Grid.Column="0" FontSize="50px" TextAlignment="Center">Imię</TextBlock>
         <TextBlock Grid.Row="0" Grid.Column="1" FontSize="50px" TextAlignment="Center">Nazwisko</TextBlock>
         <TextBox Grid.Row="1" Grid.Column="0" FontSize="25px" TextAlignment="Center" Margin="30px" Name="FName">Bolek</TextBox>
         <TextBox Grid.Row="1" Grid.Column="1" FontSize="25px" TextAlignment="Center" Margin="30px" Name="SName">Lolek</TextBox>
-        <Button Grid.Row="2" Grid.Column="0" FontSize="25px" Margin="30px" Click="Hello_OnClick">Hello</Button>
-        <Button Grid.Row="2" Grid.Column="1" FontSize="25px" Margin="30px" Click="Quit_OnClick">Quit</Button>
+        <Button Grid.Row="2" Grid.Column="0" FontSize="25px" Margin="30px" Click="Hello_OnClick">Przywitaj się</Button>
+        <Button Grid.Row="2" Grid.Column="1" FontSize="25px" Margin="30px" Click="Quit_OnClick">Wyjdź</Button>
+        <Button Grid.Row="3" Grid.Column="0" FontSize="25px" Margin="30px" Click="GoTo2_OnClick">Idź do zadania 2</Button>
+        <Button Grid.Row="3" Grid.Column="1" FontSize="25px" Margin="30px" Click="GoTo3_OnClick">Idź do zadania 3</Button>
     </Grid>
 </Window>

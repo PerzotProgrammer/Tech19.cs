@@ -1,0 +1,56 @@
+﻿<Window x:Class="Kontrolki.UserData"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:Kontrolki"
+        mc:Ignorable="d"
+        Title="UserData" Height="450" Width="600">
+    <Grid Margin="25px">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35px"></RowDefinition>
+            <RowDefinition Height="20px"></RowDefinition>
+            <RowDefinition Height="20px"></RowDefinition>
+            <RowDefinition Height="20px"></RowDefinition>
+            <RowDefinition Height="20px"></RowDefinition>
+            <RowDefinition Height="20px"></RowDefinition>
+            <RowDefinition Height="20px"></RowDefinition>
+            <RowDefinition Height="20px"></RowDefinition>
+            <RowDefinition Height="20px"></RowDefinition>
+            <RowDefinition Height="20px"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="50px"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200px"></ColumnDefinition>
+            <ColumnDefinition Width="300px"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontSize="25px" TextAlignment="Center">FORMULARZ O PRACĘ</TextBlock>
+        <TextBlock Grid.Row="1" Grid.Column="0" FontSize="15px">Imię:</TextBlock>
+        <TextBox Grid.Row="1" Grid.Column="1" FontSize="15px" Name="FName"></TextBox>
+        <TextBlock Grid.Row="2" Grid.Column="0" FontSize="15px">Nazwisko:</TextBlock>
+        <TextBox Grid.Row="2" Grid.Column="1" FontSize="15px" Name="SName"></TextBox>
+        <RadioButton Grid.Row="3" Grid.Column="0" Name="RbMan">Mężczyzna</RadioButton>
+        <RadioButton Grid.Row="3" Grid.Column="1" Name="RbWoman">Kobieta</RadioButton>
+        <TextBlock Grid.Row="4" Grid.Column="0">Języki programowania jakie umiesz</TextBlock>
+        <CheckBox Grid.Row="5" Grid.Column="0">C</CheckBox>
+        <CheckBox Grid.Row="5" Grid.Column="1">C++</CheckBox>
+        <CheckBox Grid.Row="6" Grid.Column="0">C#</CheckBox>
+        <CheckBox Grid.Row="6" Grid.Column="1">Java</CheckBox>
+        <CheckBox Grid.Row="7" Grid.Column="0">Python</CheckBox>
+        <CheckBox Grid.Row="7" Grid.Column="1">Kotlin</CheckBox>
+        <CheckBox Grid.Row="8" Grid.Column="0">Php</CheckBox>
+        <CheckBox Grid.Row="8" Grid.Column="1">Inny</CheckBox>
+        <TextBlock Grid.Row="9" Grid.Column="0" FontSize="15px">Opowiedz nam o sobie</TextBlock>
+        <TextBox Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2" Name="Desc" AcceptsReturn="True"></TextBox>
+        <Grid Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Margin="10" Click="Save_OnClick">Zapisz</Button>
+            <Button Grid.Column="1" Margin="10" Click="Quit_OnClick">Wyjdź</Button>
+        </Grid>
+
+    </Grid>
+</Window>
