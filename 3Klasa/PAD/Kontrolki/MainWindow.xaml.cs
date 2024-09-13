@@ -41,5 +41,7 @@ public partial class MainWindow : Window
 
     private void GoTo3_OnClick(object sender, RoutedEventArgs e)
     {
+        Notepad notepad = new Notepad();
+        notepad.Show();
     }
 }
