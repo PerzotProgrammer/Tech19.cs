@@ -29,6 +29,12 @@ namespace TerazApkaForms
             cd.Show();
         }
 
+        private void B3_OnClick(object sender, EventArgs e)
+        {
+            MathLesson lesson = new MathLesson();
+            lesson.Show();
+        }
+
         private void B4_OnClick(object sender, EventArgs e)
         {
             Close();

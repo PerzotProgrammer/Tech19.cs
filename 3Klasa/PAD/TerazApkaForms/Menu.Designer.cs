@@ -63,6 +63,7 @@
             this.b3.TabIndex = 2;
             this.b3.Text = "Zadanie 3";
             this.b3.UseVisualStyleBackColor = true;
+            this.b3.Click += new System.EventHandler(this.B3_OnClick);
             // 
             // b4
             // 
