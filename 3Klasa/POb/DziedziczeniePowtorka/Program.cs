@@ -9,6 +9,7 @@ class Program
         List<Shape> shapes = new List<Shape>();
         shapes.Add(CreateCircle());
         shapes.Add(CreateRectangle());
+        shapes.Add(CreateTriangle());
         PrintShapes(shapes);
     }
 
@@ -31,6 +32,16 @@ class Program
         Rectangle rectangle = new Rectangle(width, height);
         return rectangle;
     }
+
+    static Triangle CreateTriangle()
+    {
+        Console.WriteLine("TWORZYSZ TRÓJKĄT");
+        Console.Write("Podaj boki (po przecinku): ");
+        float[] sides = Console.ReadLine()!.Split(",").Select(float.Parse).ToArray();
+        Triangle triangle = new Triangle(sides[0], sides[1], sides[2]);
+        return triangle;
+    }
+
 
     static void PrintShapes(List<Shape> shapes)
     {
