@@ -14,10 +14,8 @@ public class Author : Person
         BookList.Add(book);
     }
 
-    public List<string> GetBooksTitles()
+    public List<Book> GetBooks()
     {
-        List<string> booksTitles = new List<string>();
-        for (int i = 0; i < BookList.Count; i++) booksTitles.Add(BookList[i].Title);
-        return booksTitles;
+        return BookList;
     }
 }

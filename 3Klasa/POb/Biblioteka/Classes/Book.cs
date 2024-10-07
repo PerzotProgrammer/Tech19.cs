@@ -15,8 +15,8 @@ public class Book
 
     public void Describe()
     {
-        Console.WriteLine($"Title: {Title}");
-        Console.WriteLine($"Author: {Author.FName} {Author.SName}");
-        Console.WriteLine($"Release year: {ReleaseYear}");
+        Console.WriteLine($"Tytuł: {Title}");
+        Console.WriteLine($"Autor: {Author.FName} {Author.SName}");
+        Console.WriteLine($"Rok wydania: {ReleaseYear}");
     }
 }

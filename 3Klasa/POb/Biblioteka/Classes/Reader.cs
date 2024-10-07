@@ -14,10 +14,8 @@ public class Reader : Person
         BorrowedBooks.Add(book);
     }
 
-    public List<string> GetBorrowedBooksTitles()
+    public List<Book> GetBorrowedBooks()
     {
-        List<string> booksTitles = new List<string>();
-        for (int i = 0; i < BorrowedBooks.Count; i++) booksTitles.Add(BorrowedBooks[i].Title);
-        return booksTitles;
+        return BorrowedBooks;
     }
 }
