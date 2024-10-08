@@ -52,12 +52,11 @@ public partial class Sortownia : Window
 
         OutputBlock.Text = "Udało się wygenerować tablicę!";
     }
-    
+
     // W sortowaniach nie użyłem żadnych sortowań rekurencyjnych, ponieważ przy zbyt dużych tablicach powodują stack overflow.
     // Trzeba by również dodać kod asynchroniczny, aby nie powodowało to "zacinania" się aplikacji
     private void SortArray_OnClick(object sender, RoutedEventArgs e)
     {
-        
         if (Array == null)
         {
             MessageBox.Show("Nie wygenerowano tablicy!", "błąd danych",
@@ -68,7 +67,9 @@ public partial class Sortownia : Window
 
         if (!Convert.ToBoolean(SBubble.IsChecked) &&
             !Convert.ToBoolean(SInsert.IsChecked) &&
-            !Convert.ToBoolean(SSelection.IsChecked))
+            !Convert.ToBoolean(SSelection.IsChecked) &&
+            !Convert.ToBoolean(SHoare.IsChecked) &&
+            !Convert.ToBoolean(SLomuto.IsChecked))
         {
             MessageBox.Show("Nie zaznaczono rodzaju sortowania!", "błąd danych",
                 MessageBoxButton.OK, MessageBoxImage.Error);
@@ -87,9 +88,17 @@ public partial class Sortownia : Window
         {
             Sort.InsertionSort(Array);
         }
-        else
+        else if (Convert.ToBoolean(SSelection.IsChecked))
         {
             Sort.SelectionSort(Array);
+        }
+        else if (Convert.ToBoolean(SHoare.IsChecked))
+        {
+            Sort.HoareQuickSort(Array);
+        }
+        else if (Convert.ToBoolean(SLomuto.IsChecked))
+        {
+            Sort.LomutoQuickSort(Array);
         }
 
         OutputBlock.Text = $"Posortowano tablicę!\nOperacja zajęła {stopwatch.ElapsedMilliseconds} ms.";

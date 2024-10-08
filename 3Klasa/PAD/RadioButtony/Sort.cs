@@ -3,7 +3,6 @@ namespace RadioButtony;
 /// <summary>
 /// KLASA NAPISANA PRZEZE MNIE JESZCZE W 1 KLASIE
 /// </summary>
-
 public static class Sort
 {
     public static int[] CreateArray()
@@ -181,5 +180,71 @@ public static class Sort
         i++;
         (array[i], array[end]) = (array[end], array[i]);
         return i;
+    }
+
+    // Późniejsze dodanie Lomuto i Hoare
+
+    public static void LomutoQuickSort(int[] array, int start = 0, int end = -1)
+    {
+        if (end == -1) end = array.Length - 1;
+        if (start < end)
+        {
+            int pivotIndex = LomutoPartition(array, start, end);
+            LomutoQuickSort(array, start, pivotIndex - 1);
+            LomutoQuickSort(array, pivotIndex + 1, end);
+        }
+    }
+
+    private static int LomutoPartition(int[] array, int start, int end)
+    {
+        int pivot = array[end];
+        int i = start - 1;
+
+        for (int j = start; j < end; j++)
+        {
+            if (array[j] <= pivot)
+            {
+                i++;
+                (array[i], array[j]) = (array[j], array[i]);
+            }
+        }
+
+        (array[i + 1], array[end]) = (array[end], array[i + 1]);
+        return i + 1;
+    }
+
+    public static void HoareQuickSort(int[] array, int start = 0, int end = -1)
+    {
+        if (end == -1) end = array.Length - 1;
+        if (start < end)
+        {
+            int pivotIndex = HoarePartition(array, start, end);
+            HoareQuickSort(array, start, pivotIndex);
+            HoareQuickSort(array, pivotIndex + 1, end);
+        }
+    }
+
+    private static int HoarePartition(int[] array, int start, int end)
+    {
+        int pivot = array[start];
+        int i = start - 1;
+        int j = end + 1;
+
+        while (true)
+        {
+            do
+            {
+                i++;
+            } while (array[i] < pivot);
+
+            do
+            {
+                j--;
+            } while (array[j] > pivot);
+
+            if (i >= j) return j;
+
+            (array[i], array[j]) = (array[j], array[i]);
+        }
     }
 }

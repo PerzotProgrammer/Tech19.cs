@@ -8,7 +8,7 @@
         Title="Sortownia" Height="300" Width="400">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="120"></RowDefinition>
+            <RowDefinition Height="140"></RowDefinition>
             <RowDefinition Height="20"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
@@ -22,14 +22,19 @@
                 <RowDefinition Height="15"></RowDefinition>
                 <RowDefinition Height="15"></RowDefinition>
                 <RowDefinition Height="15"></RowDefinition>
+                <RowDefinition Height="15"></RowDefinition>
+                <RowDefinition Height="15"></RowDefinition>
             </Grid.RowDefinitions>
             <Label Grid.Row="0">Wybierz typ sortowania</Label>
             <RadioButton Grid.Row="1" GroupName="sorts" Name="SBubble">Bąbelkowe</RadioButton>
             <RadioButton Grid.Row="2" GroupName="sorts" Name="SInsert">Wstawianie</RadioButton>
             <RadioButton Grid.Row="3" GroupName="sorts" Name="SSelection">Wybór</RadioButton>
+            <RadioButton Grid.Row="4" GroupName="sorts" Name="SHoare">Hoare</RadioButton>
+            <RadioButton Grid.Row="5" GroupName="sorts" Name="SLomuto">Lomuto</RadioButton>
         </Grid>
         <Grid Grid.Row="0" Grid.Column="1" Margin="10">
             <Grid.RowDefinitions>
+                <RowDefinition Height="30"></RowDefinition>
                 <RowDefinition Height="30"></RowDefinition>
                 <RowDefinition Height="30"></RowDefinition>
                 <RowDefinition Height="30"></RowDefinition>
@@ -38,16 +43,17 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Label Grid.Row="0" Grid.Column="0" FontSize="10" HorizontalAlignment="Right">Rozmiar:</Label>
-            <TextBox Grid.Row="0" Grid.Column="1" Margin="5" Name="SizeOfArray"
+            <Label Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Right">Zdefiniuj tablicę</Label>
+            <Label Grid.Row="1" Grid.Column="0" FontSize="10" HorizontalAlignment="Right">Rozmiar:</Label>
+            <TextBox Grid.Row="1" Grid.Column="1" Margin="5" Name="SizeOfArray"
                      PreviewTextInput="NumberCheck_OnPreviewTextInput">
             </TextBox>
-            <Label Grid.Row="1" Grid.Column="0" FontSize="10" HorizontalAlignment="Right">Minimalna wartość:</Label>
-            <TextBox Grid.Row="1" Grid.Column="1" Margin="5" Name="MinOfArray"
+            <Label Grid.Row="2" Grid.Column="0" FontSize="10" HorizontalAlignment="Right">Minimalna wartość:</Label>
+            <TextBox Grid.Row="2" Grid.Column="1" Margin="5" Name="MinOfArray"
                      PreviewTextInput="NumberCheck_OnPreviewTextInput">
             </TextBox>
-            <Label Grid.Row="2" Grid.Column="0" FontSize="10" HorizontalAlignment="Right">Maksymalna wartość:</Label>
-            <TextBox Grid.Row="2" Grid.Column="1" Margin="5" Name="MaxOfArray"
+            <Label Grid.Row="3" Grid.Column="0" FontSize="10" HorizontalAlignment="Right">Maksymalna wartość:</Label>
+            <TextBox Grid.Row="3" Grid.Column="1" Margin="5" Name="MaxOfArray"
                      PreviewTextInput="NumberCheck_OnPreviewTextInput">
             </TextBox>
         </Grid>
