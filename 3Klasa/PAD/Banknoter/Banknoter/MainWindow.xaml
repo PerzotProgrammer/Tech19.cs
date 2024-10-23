@@ -1,0 +1,24 @@
+﻿<Window x:Class="Banknoter.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Banknoter"
+        mc:Ignorable="d"
+        Title="Banknoter" Height="450" Width="800">
+    <Grid Margin="30px">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40px"></RowDefinition>
+            <RowDefinition Height="50px"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="0" FontSize="25px">Podaj sumę pieniędzy: </TextBlock>
+        <TextBox Grid.Row="0" Grid.Column="1" FontSize="25" Name="Input"></TextBox>
+        <Button Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Width="300px" Height="30px" Click="Button_Click">Sprawdź</Button>
+        <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Name="Output"></TextBlock>
+    </Grid>
+</Window>
