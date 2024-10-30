@@ -30,11 +30,20 @@ public partial class MainWindow : Window
             return;
         }
 
+        Images.Children.Clear();
         Dictionary<int, int> dict = CalculateNominalsDict(amountOfMoney);
-        Output.Text =
-            $"500: {dict[500]}\n200: {dict[200]}\n" +
-            $"100: {dict[100]}\n50: {dict[50]}\n20: {dict[20]}\n" +
-            $"10: {dict[10]}\n5: {dict[5]}\n2: {dict[2]}\n1: {dict[1]}";
+
+        foreach (KeyValuePair<int, int> pair in dict)
+        {
+            for (int i = 0; i < pair.Value; i++)
+            {
+                Image img = new Image();
+                img.Source = new BitmapImage(new Uri($"/images/{pair.Key}.jpg", UriKind.Relative));
+                img.Height = 64;
+                img.Margin = new Thickness(5);
+                Images.Children.Add(img);
+            }
+        }
     }
 
     private Dictionary<int, int> CalculateNominalsDict(int amount)

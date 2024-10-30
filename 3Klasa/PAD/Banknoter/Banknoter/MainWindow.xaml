@@ -20,5 +20,7 @@
         <TextBox Grid.Row="0" Grid.Column="1" FontSize="25" Name="Input"></TextBox>
         <Button Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Width="300px" Height="30px" Click="Button_Click">Sprawdź</Button>
         <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Name="Output"></TextBlock>
+        <WrapPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Name="Images">
+        </WrapPanel>
     </Grid>
 </Window>
