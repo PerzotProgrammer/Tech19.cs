@@ -77,4 +77,27 @@ public class Library
             }
         }
     }
+
+    public void OrderBooksBy(SortType sortType, bool descending = false)
+    {
+        switch (sortType)
+        {
+            case SortType.Title:
+                Books = new List<Book>(Books.OrderBy(book => book.Title));
+                break;
+            case SortType.Author:
+                Books = new List<Book>(Books.OrderBy(book => book.Author));
+                break;
+            case SortType.ReleaseYear:
+                Books = new List<Book>(Books.OrderBy(book => book.ReleaseYear));
+                break;
+            case SortType.Price:
+                Books = new List<Book>(Books.OrderBy(book => book.Price));
+                break;
+            default:
+                throw new ArgumentException();
+        }
+
+        if (descending) Books.Reverse();
+    }
 }
