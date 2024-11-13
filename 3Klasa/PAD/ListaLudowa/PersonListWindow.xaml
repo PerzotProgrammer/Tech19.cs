@@ -1,11 +1,11 @@
-﻿<Window x:Class="ListaLudowa.MainWindow"
+﻿<Window x:Class="ListaLudowa.PersonListWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ListaLudowa"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Person List Window" Height="450" Width="800">
     <Grid Margin="25px">
         <Grid.RowDefinitions>
             <RowDefinition Height="100px"></RowDefinition>
@@ -21,8 +21,8 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" FontSize="20px" TextAlignment="Right" VerticalAlignment="Center">Nie ma cię na liście?</TextBlock>
-            <Button Grid.Column="1" Width="200px" Height="25px">Dodaj</Button>
+            <Button Grid.Column="0" Width="200px" FontSize="30px" Click="AddPerson_OnClick">Dodaj do listy</Button>
+            <Button Grid.Column="1" Width="200px" FontSize="30px" Click="Refresh_OnClick">Odśwież listę</Button>
         </Grid>
     </Grid>
 </Window>

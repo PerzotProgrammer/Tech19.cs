@@ -9,4 +9,5 @@ namespace ListaLudowa;
 /// </summary>
 public partial class App : Application
 {
+    public static readonly string DataPath = "./data.json";
 }

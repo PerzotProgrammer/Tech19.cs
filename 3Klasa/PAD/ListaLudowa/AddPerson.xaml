@@ -1,0 +1,41 @@
+﻿<Window x:Class="ListaLudowa.AddPerson"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:ListaLudowa"
+        mc:Ignorable="d"
+        Title="Add Person" Height="450" Width="800">
+    <Grid Margin="25px">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100px"></RowDefinition>
+            <RowDefinition Height="30px"></RowDefinition>
+            <RowDefinition Height="30px"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="50px"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300px"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" FontSize="50px" TextAlignment="Center">Dodaj się do listy</TextBlock>
+        <TextBlock Grid.Row="1" Grid.Column="0" FontSize="20px" TextAlignment="Right" Margin="10px, 0">Imię:</TextBlock>
+        <TextBox Grid.Row="1" Grid.Column="1" Margin="10px, 0" Name="PersonName" Width="300px"></TextBox>
+        <TextBlock Grid.Row="2" Grid.Column="0" FontSize="20px" TextAlignment="Right" Margin="10px, 0">Płeć:</TextBlock>
+        <Grid Grid.Row="2" Grid.Column="1" Width="300px">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <RadioButton Grid.Column="0" GroupName="Gender" Checked="ToggleRadio_OnChecked">Mężczyzna</RadioButton>
+            <RadioButton Grid.Column="1" GroupName="Gender" Checked="ToggleRadio_OnChecked">Kobieta</RadioButton>
+            <RadioButton Grid.Column="2" GroupName="Gender" Checked="ToggleRadio_OnChecked">Inne</RadioButton>
+        </Grid>
+        <TextBlock Grid.Row="3" Grid.Column="0" FontSize="20px" TextAlignment="Right" Margin="10px, 0">O sobie:</TextBlock>
+        <TextBox Grid.Row="3" Grid.Column="1" Margin="10px, 0" Width="300px" HorizontalAlignment="Left"
+                 AcceptsReturn="True" Name="About">
+        </TextBox>
+        <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Width="200px" Height="25px" Click="Confirm_OnClick">Dodaj</Button>
+    </Grid>
+</Window>
