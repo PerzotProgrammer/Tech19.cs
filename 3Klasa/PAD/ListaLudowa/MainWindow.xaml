@@ -1,0 +1,28 @@
+﻿<Window x:Class="ListaLudowa.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ListaLudowa"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid Margin="25px">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100px"></RowDefinition>
+            <RowDefinition Height="30px"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="50px"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" FontSize="75px" TextAlignment="Center">Lista ludowa</TextBlock>
+        <TextBlock Grid.Row="1" FontSize="20px">Obecni na liście:</TextBlock>
+        <TextBlock Grid.Row="2" Loaded="OnContentLoad" Name="PersonList"></TextBlock>
+        <Grid Grid.Row="3" Margin="100px, 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" FontSize="20px" TextAlignment="Right" VerticalAlignment="Center">Nie ma cię na liście?</TextBlock>
+            <Button Grid.Column="1" Width="200px" Height="25px">Dodaj</Button>
+        </Grid>
+    </Grid>
+</Window>
