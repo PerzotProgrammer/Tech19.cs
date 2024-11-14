@@ -47,12 +47,13 @@ public partial class PersonListWindow : Window
 
     private void LoadData()
     {
-        PersonList.Text = String.Empty;
+        PersonList.Children.Clear();
         StreamReader reader = new StreamReader(App.DataPath);
         while (!reader.EndOfStream)
         {
             Person person = JsonSerializer.Deserialize<Person>(reader.ReadLine()!)!;
-            PersonList.Text += $"Imie: {person.Name}\nPłeć: {person.Gender}\nOpis: {person.About}\n\n";
+            UserData userData = new UserData(person);
+            PersonList.Children.Add(userData);
         }
     }
 
