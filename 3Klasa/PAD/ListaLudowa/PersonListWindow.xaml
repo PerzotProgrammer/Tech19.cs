@@ -15,7 +15,9 @@
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" FontSize="75px" TextAlignment="Center">Lista ludowa</TextBlock>
         <TextBlock Grid.Row="1" FontSize="20px">Obecni na liście:</TextBlock>
-        <WrapPanel Grid.Row="2" Loaded="OnContentLoad" Name="PersonList"></WrapPanel>
+        <ScrollViewer Grid.Row="2">
+            <WrapPanel Loaded="OnContentLoad" Name="PersonList"></WrapPanel>
+        </ScrollViewer>
         <Grid Grid.Row="3" Margin="100px, 0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
