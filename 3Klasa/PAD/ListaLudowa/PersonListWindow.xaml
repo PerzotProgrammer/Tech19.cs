@@ -15,16 +15,9 @@
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" FontSize="75px" TextAlignment="Center">Lista ludowa</TextBlock>
         <TextBlock Grid.Row="1" FontSize="20px">Obecni na liście:</TextBlock>
-        <ScrollViewer Grid.Row="2">
+        <ScrollViewer Grid.Row="2" Background="#dddddd">
             <WrapPanel Loaded="OnContentLoad" Name="PersonList"></WrapPanel>
         </ScrollViewer>
-        <Grid Grid.Row="3" Margin="100px, 0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Width="200px" FontSize="30px" Click="AddPerson_OnClick">Dodaj do listy</Button>
-            <Button Grid.Column="1" Width="200px" FontSize="30px" Click="Refresh_OnClick">Odśwież listę</Button>
-        </Grid>
+        <Button Grid.Row="3" Width="200px" FontSize="30px" Click="AddPerson_OnClick">Dodaj do listy</Button>
     </Grid>
 </Window>

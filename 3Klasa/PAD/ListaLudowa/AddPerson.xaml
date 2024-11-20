@@ -5,7 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:ListaLudowa"
         mc:Ignorable="d"
-        Title="Add Person" Height="450" Width="800">
+        Title="Add Person" MinHeight="450" MinWidth="550" MaxWidth="550" Height="450">
     <Grid Margin="25px">
         <Grid.RowDefinitions>
             <RowDefinition Height="100px"></RowDefinition>
@@ -15,14 +15,16 @@
             <RowDefinition Height="50px"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="300px"></ColumnDefinition>
+            <ColumnDefinition Width="100px"></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <TextBlock Grid.Row="0" Grid.ColumnSpan="2" FontSize="50px" TextAlignment="Center">Dodaj się do listy</TextBlock>
         <TextBlock Grid.Row="1" Grid.Column="0" FontSize="20px" TextAlignment="Right" Margin="10px, 0">Imię:</TextBlock>
-        <TextBox Grid.Row="1" Grid.Column="1" Margin="10px, 0" Name="PersonName" Width="300px"></TextBox>
+        <TextBox Grid.Row="1" Grid.Column="1" Margin="10px, 0" Name="PersonName" Width="300px"
+                 HorizontalAlignment="Left">
+        </TextBox>
         <TextBlock Grid.Row="2" Grid.Column="0" FontSize="20px" TextAlignment="Right" Margin="10px, 0">Płeć:</TextBlock>
-        <Grid Grid.Row="2" Grid.Column="1" Width="300px">
+        <Grid Grid.Row="2" Grid.Column="1" Width="300px" HorizontalAlignment="Left">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>

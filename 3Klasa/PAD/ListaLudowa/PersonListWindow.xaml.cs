@@ -18,13 +18,14 @@ namespace ListaLudowa;
 /// </summary>
 public partial class PersonListWindow : Window
 {
+    private AddPerson? AddPersonWindow;
+
     public PersonListWindow()
     {
         FileExistsCheck();
         InitializeComponent();
     }
 
-    private AddPerson AddPersonWindow;
 
     private void FileExistsCheck()
     {
@@ -45,17 +46,6 @@ public partial class PersonListWindow : Window
         }
     }
 
-    private void LoadData()
-    {
-        PersonList.Children.Clear();
-        StreamReader reader = new StreamReader(App.DataPath);
-        while (!reader.EndOfStream)
-        {
-            Person person = JsonSerializer.Deserialize<Person>(reader.ReadLine()!)!;
-            UserData userData = new UserData(person);
-            PersonList.Children.Add(userData);
-        }
-    }
 
     private void OnContentLoad(object sender, RoutedEventArgs e)
     {
@@ -72,12 +62,19 @@ public partial class PersonListWindow : Window
             return;
         }
 
-        AddPersonWindow = new AddPerson();
+        AddPersonWindow = new AddPerson(this);
         AddPersonWindow.Show();
     }
 
-    private void Refresh_OnClick(object sender, RoutedEventArgs e)
+    public void LoadData()
     {
-        LoadData();
+        PersonList.Children.Clear();
+        StreamReader reader = new StreamReader(App.DataPath);
+        while (!reader.EndOfStream)
+        {
+            Person person = JsonSerializer.Deserialize<Person>(reader.ReadLine()!)!;
+            UserData userData = new UserData(person);
+            PersonList.Children.Add(userData);
+        }
     }
 }
