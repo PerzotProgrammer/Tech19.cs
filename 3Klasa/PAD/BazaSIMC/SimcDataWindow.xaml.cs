@@ -15,13 +15,13 @@ namespace BazaSIMC;
 /// <summary>
 /// Interaction logic for MainWindow.xaml
 /// </summary>
-public partial class SimcSearchWindow : Window
+public partial class SimcDataWindow : Window
 {
     private SqliteConnection Connection;
     private List<SimcDataStruct> SimcData;
     private Window? SearchWindow;
 
-    public SimcSearchWindow()
+    public SimcDataWindow()
     {
         Connection = new SqliteConnection("Data Source=SimcBase.db");
         SimcData = new List<SimcDataStruct>();
@@ -72,29 +72,11 @@ public partial class SimcSearchWindow : Window
         NumOfResults.Text = $"Ilość wierszy: {SimcData.Count}";
     }
 
-    private void SearchByName_OnClick(object sender, RoutedEventArgs e)
+    private void Search_OnClick(object sender, RoutedEventArgs e)
     {
         if (!IsSearchWindowOpen())
         {
-            SearchWindow = new SearchByName(this);
-            SearchWindow.Show();
-        }
-    }
-
-    private void SearchBySimc_OnClick(object sender, RoutedEventArgs e)
-    {
-        if (!IsSearchWindowOpen())
-        {
-            SearchWindow = new SearchBySimc(this);
-            SearchWindow.Show();
-        }
-    }
-
-    private void SearchByDistrict_OnClick(object sender, RoutedEventArgs e)
-    {
-        if (!IsSearchWindowOpen())
-        {
-            SearchWindow = new SearchByDistrict(this, Connection);
+            SearchWindow = new SearchWindow(this, Connection);
             SearchWindow.Show();
         }
     }
