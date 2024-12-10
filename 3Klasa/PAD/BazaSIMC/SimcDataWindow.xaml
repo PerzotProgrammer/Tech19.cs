@@ -5,15 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BazaSIMC"
         mc:Ignorable="d"
-        Title="Wyszukiwarka SIMC" Height="450" Width="1300">
-    <Grid Loaded="MainWindow_OnLoaded">
+        Closed="SimcDataWindow_OnClosed"
+        Title="Wyszukiwarka SIMC" Height="800" Width="1300">
+    <Grid Loaded="MainWindow_OnLoaded" Margin="10px">
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
             <RowDefinition Height="20"></RowDefinition>
             <RowDefinition Height="100"></RowDefinition>
         </Grid.RowDefinitions>
-        <DataGrid Grid.Row="0" Name="DataGrid" FontSize="15px" MinColumnWidth="250"
-                  CanUserResizeColumns="False"
+        <DataGrid Grid.Row="0" Name="DataGrid" FontSize="15px" ColumnWidth="250"
                   CanUserResizeRows="False"
                   CanUserAddRows="False"
                   CanUserDeleteRows="False">
@@ -26,7 +26,7 @@
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0" Margin="30px" Width="250px" Click="Search_OnClick">Wyszukaj miejscowości</Button>
 
-            <Button Grid.Column="1" Margin="30px" Width="250px" Click="SearchAll_OnClick">Pokaż wszystkie (KOSZTOWNE)</Button>
+            <Button Grid.Column="1" Margin="30px" Width="250px" Click="SearchAll_OnClick">Pokaż wszystkie</Button>
         </Grid>
     </Grid>
 </Window>

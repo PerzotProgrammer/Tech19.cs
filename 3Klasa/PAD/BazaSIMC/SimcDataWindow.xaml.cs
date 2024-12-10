@@ -12,9 +12,6 @@ using Microsoft.Data.Sqlite;
 
 namespace BazaSIMC;
 
-/// <summary>
-/// Interaction logic for MainWindow.xaml
-/// </summary>
 public partial class SimcDataWindow : Window
 {
     private SqliteConnection Connection;
@@ -32,6 +29,7 @@ public partial class SimcDataWindow : Window
     private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
     {
         Connection.Open();
+        QueryToDataGrid("SELECT * FROM SimcWithTerc");
     }
 
     public void QueryToDataGrid(string sqlQuery)
@@ -43,29 +41,14 @@ public partial class SimcDataWindow : Window
         SqliteDataReader reader = command.ExecuteReader();
         while (reader.Read())
         {
-            SqliteCommand subCommand = Connection.CreateCommand();
             string name = reader.GetString(0);
             string simcCode = reader.GetString(1);
-            string provinceRaw = reader.GetString(2);
-            string districtRaw = reader.GetString(3);
-            string communeRaw = reader.GetString(4);
+            string province = reader.GetString(2);
+            string district = reader.GetString(3);
+            string commune = reader.GetString(4);
+            string communeType = reader.GetString(5);
 
-            subCommand.CommandText = $"SELECT nazwa FROM Terc WHERE woj = '{provinceRaw}'";
-            string province = subCommand.ExecuteScalar()?.ToString() ?? " - ";
-            province = province[0].ToString().ToUpper() + province.Substring(1).ToLower();
-
-            subCommand.CommandText = $"SELECT nazwa FROM Terc WHERE woj = '{provinceRaw}' AND pow = '{districtRaw}'";
-            string district = subCommand.ExecuteScalar()?.ToString() ?? " - ";
-
-            subCommand.CommandText =
-                $"SELECT nazwa FROM Terc WHERE woj = '{provinceRaw}' AND pow = '{districtRaw}' AND gmi = '{communeRaw}'";
-            string commune = subCommand.ExecuteScalar()?.ToString() ?? " - ";
-
-            subCommand.CommandText =
-                $"SELECT nazwa_dod FROM Terc WHERE woj = '{provinceRaw}' AND pow = '{districtRaw}' AND gmi = '{communeRaw}'";
-            string type = subCommand.ExecuteScalar()?.ToString() ?? " - ";
-
-            SimcData.Add(new SimcDataStruct(name, simcCode, province, district, commune, type));
+            SimcData.Add(new SimcDataStruct(name, simcCode, province, district, commune, communeType));
         }
 
         DataGrid.ItemsSource = SimcData;
@@ -76,14 +59,14 @@ public partial class SimcDataWindow : Window
     {
         if (!IsSearchWindowOpen())
         {
-            SearchWindow = new SearchWindow(this, Connection);
+            SearchWindow = new SearchWindow(this);
             SearchWindow.Show();
         }
     }
 
     private void SearchAll_OnClick(object sender, RoutedEventArgs e)
     {
-        QueryToDataGrid("SELECT nazwa, sym, woj, pow, gmi FROM Simc");
+        QueryToDataGrid("SELECT * FROM SimcWithTerc");
     }
 
     private bool IsSearchWindowOpen()
@@ -96,5 +79,11 @@ public partial class SimcDataWindow : Window
         }
 
         return false;
+    }
+
+    private void SimcDataWindow_OnClosed(object? sender, EventArgs e)
+    {
+        Connection.Close();
+        SearchWindow?.Close();
     }
 }
