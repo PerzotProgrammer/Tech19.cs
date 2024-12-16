@@ -1,9 +1,9 @@
 namespace Delegaty.Classes;
 
-public class EmailNotifier
+public class EmailNotifier : INotifier
 {
-    public void SendEmail(string message)
+    public void Send(string message, string recipient)
     {
-        Console.WriteLine($"Sending email.\nMessage: {message}");
+        Console.WriteLine($"Sending email to {recipient}.\nMessage: {message}");
     }
 }

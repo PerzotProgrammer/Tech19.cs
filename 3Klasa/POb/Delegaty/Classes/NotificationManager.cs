@@ -5,25 +5,44 @@ public class NotificationManager
     public delegate void NotificationSender(string message);
 
     private NotificationSender? Sender;
+    private List<User> Users;
 
-    public void AddSender(NotificationSender sender)
+    public NotificationManager()
     {
-        Sender += sender;
+        Users = new List<User>();
     }
 
-    public void RemoveSender(NotificationSender sender)
+    public void AddUser(User user)
     {
-        Sender -= sender;
+        Users.Add(user);
+    }
+
+    public void RemoveUser(User user)
+    {
+        Users.Remove(user);
     }
 
     public void SendNotification(string message)
     {
-        if (Sender == null)
+        Sender?.Invoke(message);
+    }
+
+    public void SetNewNotificationPriority(int newPriority)
+    {
+        if (Sender != null)
         {
-            Console.WriteLine("No senders added.");
-            return;
+            foreach (Delegate notificationSubscription in Sender.GetInvocationList())
+            {
+                Sender -= (NotificationSender)notificationSubscription;
+            }
+
         }
 
-        Sender?.Invoke(message);
+        List<User> users = Users.Where(user => user.NotifierPriority >= newPriority).ToList();
+
+        foreach (User user in users)
+        {
+            Sender += user.Notify;
+        }
     }
 }

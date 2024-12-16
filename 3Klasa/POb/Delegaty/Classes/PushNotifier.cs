@@ -1,9 +1,9 @@
 namespace Delegaty.Classes;
 
-public class PushNotifier
+public class PushNotifier : INotifier
 {
-    public void SendPush(string message)
+    public void Send(string message, string recipient)
     {
-        Console.WriteLine($"Sending push.\nMessage: {message}");
+        Console.WriteLine($"Sending push to {recipient}.\nMessage: {message}");
     }
 }

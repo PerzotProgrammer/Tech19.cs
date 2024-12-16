@@ -1,9 +1,9 @@
 namespace Delegaty.Classes;
 
-public class SmsNotifier
+public class SmsNotifier : INotifier
 {
-    public void SendSms(string message)
+    public void Send(string message, string recipient)
     {
-        Console.WriteLine($"Sending SMS.\nMessage: {message}");
+        Console.WriteLine($"Sending SMS to {recipient}.\nMessage: {message}");
     }
 }
