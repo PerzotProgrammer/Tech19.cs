@@ -1,4 +1,5 @@
 using System.Data;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace KalkulatoroweTesty;
@@ -6,28 +7,27 @@ namespace KalkulatoroweTesty;
 public class CalcBrain
 {
     private static CalcBrain? Instance;
-    private List<char> ExprBuilder;
+    private StringBuilder ExprBuilder;
 
     private CalcBrain()
     {
-        ExprBuilder = new List<char>();
+        ExprBuilder = new StringBuilder();
     }
 
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public static CalcBrain GetInstance()
     {
-        if (Instance == null) Instance = new CalcBrain();
-
-        return Instance;
+        return Instance ??= new CalcBrain();
     }
 
-    public void AddToStack(char character)
+    public void AddToStack(string chars)
     {
-        ExprBuilder.Add(character);
+        ExprBuilder.Append(chars);
     }
 
     public void RemoveLastCharacterFromStack()
     {
-        ExprBuilder.RemoveAt(ExprBuilder.Count - 1);
+        ExprBuilder.Remove(ExprBuilder.Length - 1, 1);
     }
 
     public void ClearStack()
@@ -37,12 +37,13 @@ public class CalcBrain
 
     public string GetExpressionAsString()
     {
-        return new string(ExprBuilder.ToArray());
+        return ExprBuilder.ToString();
     }
 
     public double EvaluateExpression()
     {
+        // Trzeba tu dodać ONP
         DataTable table = new DataTable();
-        return Convert.ToDouble(table.Compute(GetExpressionAsString(), String.Empty));
+        return Convert.ToDouble(table.Compute(GetExpressionAsString(), string.Empty));
     }
 }

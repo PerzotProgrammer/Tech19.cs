@@ -7,6 +7,31 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0"
+                   Name="DisplayBlock"
+                   Margin="15"
+                   FontSize="40"
+                   TextAlignment="Right"
+                   VerticalAlignment="Bottom"
+                   TextWrapping="NoWrap">
+        </TextBlock>
+        <TextBox Grid.Row="1"
+                 Name="TextBox"
+                 Margin="15"
+                 FontSize="40"
+                 PreviewTextInput="DigitOrOperatorCheck_OnPreviewTextInput"
+                 TextChanged="TextBox_OnTextChanged">
+        </TextBox>
+        <Button Grid.Row="2"
+                Margin="40"
+                FontSize="40"
+                Click="CalculateButton_OnClick">
+            Oblicz
+        </Button>
     </Grid>
 </Window>

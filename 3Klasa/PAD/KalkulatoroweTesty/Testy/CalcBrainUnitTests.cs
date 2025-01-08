@@ -15,24 +15,42 @@ public class CalcBrainUnitTests
     [Test]
     public void CalcBrain_GetExpr_ShouldBeEqual()
     {
-        CalcBrain.AddToStack('1');
-        CalcBrain.AddToStack('+');
-        CalcBrain.AddToStack('1');
+        CalcBrain.AddToStack("1+1");
 
-        string expr = CalcBrain.GetExpressionAsString();
+        string output = CalcBrain.GetExpressionAsString();
+        string expected = "1+1";
 
-        Assert.That(expr, Is.EqualTo("1+1"));
+        Assert.That(output, Is.EqualTo(expected));
     }
 
     [Test]
     public void CalcBrain_Evaluate_ShouldBeEqual()
     {
-        CalcBrain.AddToStack('1');
-        CalcBrain.AddToStack('+');
-        CalcBrain.AddToStack('1');
+        CalcBrain.AddToStack("1+1");
 
         double output = CalcBrain.EvaluateExpression();
+        double expected = 2;
 
-        Assert.That(output, Is.EqualTo(2));
+        Assert.That(output, Is.EqualTo(expected));
+    }
+
+    [Test]
+    public void CalcBrain_DeleteAndEvaluate_ShouldBeEqual()
+    {
+        CalcBrain.AddToStack("1+1");
+        CalcBrain.RemoveLastCharacterFromStack();
+        CalcBrain.RemoveLastCharacterFromStack();
+
+        double output = CalcBrain.EvaluateExpression();
+        double expected = 1;
+
+        Assert.That(output, Is.EqualTo(expected));
+    }
+
+    [Test]
+    public void CalcBrain_CheckIfSingleton()
+    {
+        CalcBrain calcBrain2 = CalcBrain.GetInstance();
+        Assert.That(calcBrain2, Is.EqualTo(CalcBrain));
     }
 }
