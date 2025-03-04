@@ -1,4 +1,4 @@
-namespace Zdarzenia.Users;
+namespace Zdarzenia.Enums;
 
 public enum UserTypes
 {

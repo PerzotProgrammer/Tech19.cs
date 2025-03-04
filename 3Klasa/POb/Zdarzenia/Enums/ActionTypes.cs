@@ -1,4 +1,4 @@
-namespace Zdarzenia.RBAC;
+namespace Zdarzenia.Enums;
 
 public enum ActionTypes
 {

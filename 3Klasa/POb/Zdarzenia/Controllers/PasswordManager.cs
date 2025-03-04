@@ -1,12 +1,14 @@
 using System.Security.Cryptography;
 using System.Text;
+using Zdarzenia.Enums;
+using Zdarzenia.Users;
 
-namespace Zdarzenia.Users;
+namespace Zdarzenia.Controllers;
 
 public static class PasswordManager
 {
-    private const string PasswordsFilePath = "passwords.txt";
-    public static event Action<string, bool>? PasswordVerified;
+    private const string PasswordsFilePath = "./UserData.csv";
+    public static event Action<LoginResultTypes, bool>? OperationResult;
 
     static PasswordManager()
     {
@@ -22,10 +24,10 @@ public static class PasswordManager
         {
             while (!reader.EndOfStream)
             {
-                string[] parts = reader.ReadLine()!.Split(", ");
+                string[] parts = reader.ReadLine()!.Split(",");
                 if (parts[0] == user.Username)
                 {
-                    PasswordVerified?.Invoke("User already exists", false);
+                    OperationResult?.Invoke(LoginResultTypes.NameTaken, false);
                     return;
                 }
             }
@@ -33,7 +35,7 @@ public static class PasswordManager
 
         using StreamWriter writer = new(PasswordsFilePath, true);
         writer.WriteLine($"{user.Username}, {HashPassword(user.Password)}, {user.Type.ToString()}");
-        PasswordVerified?.Invoke("User created", true);
+        OperationResult?.Invoke(LoginResultTypes.Ok, true);
     }
 
     public static User? LoginUser(string username, string password)
@@ -47,16 +49,16 @@ public static class PasswordManager
                 if (ComparePassword(password, parts[1]))
                 {
                     UserTypes type = Enum.Parse<UserTypes>(parts[2]);
-                    PasswordVerified?.Invoke("User logged in", true);
+                    OperationResult?.Invoke(LoginResultTypes.Ok, true);
                     return new User(username, password, type);
                 }
 
-                PasswordVerified?.Invoke("Incorrect password", false);
+                OperationResult?.Invoke(LoginResultTypes.IncorrectPassword, false);
                 return null;
             }
         }
 
-        PasswordVerified?.Invoke("User doesn't exists", false);
+        OperationResult?.Invoke(LoginResultTypes.UserDoesntExist, false);
         return null;
     }
 

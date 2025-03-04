@@ -1,12 +1,13 @@
+using Zdarzenia.Enums;
 using Zdarzenia.Users;
 
-namespace Zdarzenia.RBAC;
+namespace Zdarzenia.Controllers;
 
 public class AccessController
 {
-    private readonly Dictionary<UserTypes, List<ActionTypes>> AccessMatrix;
+    private static readonly Dictionary<UserTypes, List<ActionTypes>> AccessMatrix;
 
-    public AccessController()
+    static AccessController()
     {
         AccessMatrix = new Dictionary<UserTypes, List<ActionTypes>>
         {
@@ -20,7 +21,7 @@ public class AccessController
         };
     }
 
-    public bool CanPerformAction(UserTypes userType, ActionTypes action)
+    public static bool CanPerformAction(UserTypes userType, ActionTypes action)
     {
         return AccessMatrix[userType].Contains(action);
     }

@@ -1,3 +1,5 @@
+using Zdarzenia.Enums;
+
 namespace Zdarzenia.Users;
 
 public class User
