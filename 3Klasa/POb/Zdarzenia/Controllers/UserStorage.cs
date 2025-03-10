@@ -20,17 +20,17 @@ public class UserStorage
 
     public void LoginUser(string username, string password)
     {
-        PasswordManager.OperationResult += OnUserLogin;
+        UserDataManager.OperationResult += OnUserLogin;
 
-        CurrentUser = PasswordManager.LoginUser(username, password) ?? CurrentUser;
-        PasswordManager.OperationResult -= OnUserLogin;
+        CurrentUser = UserDataManager.LoginUser(username, password) ?? CurrentUser;
+        UserDataManager.OperationResult -= OnUserLogin;
     }
 
     public void RegisterUser(string username, string password, UserTypes type)
     {
-        PasswordManager.OperationResult += OnUserRegister;
-        PasswordManager.SaveUser(new User(username, password, type));
-        PasswordManager.OperationResult -= OnUserRegister;
+        UserDataManager.OperationResult += OnUserRegister;
+        UserDataManager.SaveUser(new User(username, password, type));
+        UserDataManager.OperationResult -= OnUserRegister;
     }
 
     public void LogoutUser()

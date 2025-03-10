@@ -5,22 +5,22 @@ using Zdarzenia.Users;
 
 namespace Zdarzenia.Controllers;
 
-public static class PasswordManager
+public static class UserDataManager
 {
-    private const string PasswordsFilePath = "./UserData.csv";
+    private const string UserDataFilePath = "./UserData.csv";
     public static event Action<LoginResultTypes, bool>? OperationResult;
 
-    static PasswordManager()
+    static UserDataManager()
     {
-        if (!File.Exists(PasswordsFilePath))
+        if (!File.Exists(UserDataFilePath))
         {
-            File.Create(PasswordsFilePath).Close();
+            File.Create(UserDataFilePath).Close();
         }
     }
 
     public static void SaveUser(User user)
     {
-        using (StreamReader reader = new StreamReader(PasswordsFilePath))
+        using (StreamReader reader = new StreamReader(UserDataFilePath))
         {
             while (!reader.EndOfStream)
             {
@@ -33,14 +33,14 @@ public static class PasswordManager
             }
         }
 
-        using StreamWriter writer = new(PasswordsFilePath, true);
-        writer.WriteLine($"{user.Username}, {HashPassword(user.Password)}, {user.Type.ToString()}");
+        using StreamWriter writer = new(UserDataFilePath, true);
+        writer.WriteLine($"{user.Username}, {HashPassword(user.Password)}, {user.UserType.ToString()}");
         OperationResult?.Invoke(LoginResultTypes.Ok, true);
     }
 
     public static User? LoginUser(string username, string password)
     {
-        using StreamReader reader = new StreamReader(PasswordsFilePath);
+        using StreamReader reader = new StreamReader(UserDataFilePath);
         while (!reader.EndOfStream)
         {
             string[] parts = reader.ReadLine()!.Split(", ");
