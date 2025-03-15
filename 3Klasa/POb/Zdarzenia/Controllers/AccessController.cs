@@ -27,7 +27,7 @@ public class AccessController
     {
         bool canPerform = AccessMatrix[userType].Contains(action);
 
-        if (!canPerform)
+        if (!canPerform || userType != UserTypes.Admin)
         {
             OperationResult?.Invoke(ActionResultTypes.Forbidden, false);
             return false;
