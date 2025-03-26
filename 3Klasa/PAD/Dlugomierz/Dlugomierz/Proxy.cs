@@ -11,20 +11,23 @@ public class Proxy
         Adapter = new DebtDataAdapter(1_000_000);
     }
 
-    public string Calculate(string labelValue)
+    public string TryCalculate(string labelData)
     {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.Append("Do spłacenia pozostało: ");
         try
         {
-            stringBuilder.Append(Adapter.ValidateData(labelValue));
+            if (Adapter.GetDebtValue() <= 0)
+            {
+                return "Dług spłacony";
+            }
+            Adapter.CheckPayment(labelData);
+            return $"Zapłacono: {labelData} zł";
         }
         catch (Exception)
         {
             return "Błędne dane";
         }
 
-        return stringBuilder.ToString();
+
     }
 
     public int GetDebtValue()

@@ -2,15 +2,16 @@ namespace Dlugomierz;
 
 public class DebtData : IDao
 {
-    public string LabelData { get; set; }
+    public int DebtValue { get; set; }
 
-    public DebtData(string labelData)
+    public DebtData(int debtValue)
     {
-        LabelData = labelData;
+        DebtValue = debtValue;
     }
 
-    public int LabelDataToInt()
+    public void CalculateNewDebtValue(int payment)
     {
-        return int.Parse(LabelData);
+        DebtValue -= payment;
+        if (DebtValue < 0) DebtValue = 0;
     }
 }

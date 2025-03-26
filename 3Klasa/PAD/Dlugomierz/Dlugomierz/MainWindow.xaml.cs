@@ -17,23 +17,27 @@ namespace Dlugomierz;
 public partial class MainWindow : Window
 {
     private Proxy Proxy;
-    private int DebtValue;
 
     public MainWindow()
     {
         Proxy = new Proxy();
-        DebtValue = 1_000_000;
         InitializeComponent();
     }
 
     private void DebtButton_OnClick(object sender, RoutedEventArgs e)
     {
-        string output = Proxy.Calculate(DebtTextBox.Text);
+        string output = Proxy.TryCalculate(DebtTextBox.Text);
+        SetRemainingDebt();
         DebtOutputBlock.Text = output;
     }
 
     private void SetRemainingDebt()
     {
-        DebtValueTextBlock.Text = DebtValue.ToString();
+        DebtValueTextBlock.Text = $"{Proxy.GetDebtValue()} zł";
+    }
+
+    private void Window_OnLoaded(object sender, RoutedEventArgs e)
+    {
+        SetRemainingDebt();
     }
 }

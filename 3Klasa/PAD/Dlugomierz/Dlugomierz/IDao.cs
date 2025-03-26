@@ -2,6 +2,6 @@ namespace Dlugomierz;
 
 public interface IDao
 {
-    string LabelData { get; protected set; }
-    int LabelDataToInt();
+    public int DebtValue { get; protected set; }
+    public void CalculateNewDebtValue(int payment);
 }

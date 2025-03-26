@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Dlugomierz"
         mc:Ignorable="d"
         Title="Długomierz" Height="450" Width="800">
-    <Grid>
+    <Grid Loaded="Window_OnLoaded">
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>

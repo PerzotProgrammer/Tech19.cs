@@ -4,24 +4,31 @@ public class DebtDataAdapter : IAdapter
 {
     public int DataLimit { get; private set; }
 
-    public DebtDataAdapter(int dataLimit)
+    private IDao Dao;
+
+    public DebtDataAdapter(int dataLimit, int initialDebt = 1_000_000)
     {
         DataLimit = dataLimit;
+        Dao = new DebtData(initialDebt);
     }
 
-    public string ValidateData(string labelData)
+    public void CheckPayment(string labelData)
     {
-        IDao dao = new DebtData(labelData);
-        if (DataLimit >= dao.LabelDataToInt())
+        if (!int.TryParse(labelData.Replace("_",""), out int data))
         {
             throw new ArgumentException();
         }
 
-        return dao.LabelData;
+        if (data < 0 || data > DataLimit)
+        {
+            throw new ArgumentOutOfRangeException();
+        }
+
+        Dao.CalculateNewDebtValue(data);
     }
 
     public int GetDebtValue()
     {
-        return 1_000_000;
+        return Dao.DebtValue;
     }
 }

@@ -2,6 +2,6 @@ namespace Dlugomierz;
 
 public interface IAdapter
 {
-    string ValidateData(string labelData);
+    void CheckPayment(string labelData);
     int GetDebtValue();
 }
