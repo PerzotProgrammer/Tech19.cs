@@ -28,6 +28,7 @@ public partial class MainWindow : Window
     private void RollButton_OnClick(object sender, RoutedEventArgs e)
     {
         PlaceOnBoard();
+        GetWinner();
     }
 
     private void PlaceOnBoard()
@@ -43,5 +44,17 @@ public partial class MainWindow : Window
         Cell20.Text = board[2, 0];
         Cell21.Text = board[2, 1];
         Cell22.Text = board[2, 2];
+    }
+
+    private void GetWinner()
+    {
+        char winner = Brain.GetWinner();
+        if (winner == 'N')
+        {
+            WinnerTextBlock.Text = "Remis!";
+            return;
+        }
+
+        WinnerTextBlock.Text = $"Wygrał {winner}!";
     }
 }

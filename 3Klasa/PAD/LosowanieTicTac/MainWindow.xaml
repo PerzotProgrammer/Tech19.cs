@@ -12,6 +12,7 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
@@ -28,5 +29,6 @@
         <TextBlock Grid.Row="2" Grid.Column="1" TextAlignment="Center" FontSize="86" Name="Cell21"></TextBlock>
         <TextBlock Grid.Row="2" Grid.Column="2" TextAlignment="Center" FontSize="86" Name="Cell22"></TextBlock>
         <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Margin="128 16" FontSize="32" Click="RollButton_OnClick">LOSUJ</Button>
+        <TextBlock Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" TextAlignment="Center" FontSize="32" Name="WinnerTextBlock"></TextBlock>
     </Grid>
 </Window>

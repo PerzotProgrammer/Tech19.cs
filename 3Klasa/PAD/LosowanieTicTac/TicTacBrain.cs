@@ -37,7 +37,7 @@ public class TicTacBrain
 
         RollBoard();
 
-        for (int i = 0; i < Board.GetLength(0); i++)
+        for (int i = 0; i < Board!.GetLength(0); i++)
         {
             for (int j = 0; j < Board.GetLength(1); j++)
             {
@@ -47,5 +47,27 @@ public class TicTacBrain
         }
 
         return boardStr;
+    }
+
+    public char GetWinner()
+    {
+        for (int i = 0; i < Board!.GetLength(0); i++)
+        {
+            if (Board[i, 0] && Board[i, 1] && Board[i, 2]) return 'X';
+            if (!Board[i, 0] && !Board[i, 1] && !Board[i, 2]) return 'O';
+        }
+
+        for (int i = 0; i < Board.GetLength(1); i++)
+        {
+            if (Board[0, i] && Board[1, i] && Board[2, i]) return 'X';
+            if (!Board[0, i] && !Board[1, i] && !Board[2, i]) return 'O';
+        }
+
+        if (Board[0, 0] && Board[1, 1] && Board[2, 2]) return 'X';
+        if (Board[0, 2] && Board[1, 1] && Board[2, 0]) return 'X';
+        if (!Board[0, 0] && !Board[1, 1] && !Board[2, 2]) return 'O';
+        if (!Board[0, 2] && !Board[1, 1] && !Board[2, 0]) return 'O';
+
+        return 'N';
     }
 }
