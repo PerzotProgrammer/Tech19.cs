@@ -1,0 +1,68 @@
+﻿<Window x:Class="KartkowaJedenWPF.FirstWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KartkowaJedenWPF"
+        mc:Ignorable="d"
+        Title="FirstWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="4*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0">
+            <CheckBox Margin="6">Write to log file</CheckBox>
+            <CheckBox Margin="6">Send log via email</CheckBox>
+            <CheckBox Margin="6">Use event log</CheckBox>
+        </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Margin="10" HorizontalAlignment="Right">Select an email address:</TextBlock>
+                <TextBlock Grid.Column="1" Margin="10" HorizontalAlignment="Left">testificate@examlpe.com</TextBlock>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Margin="10" HorizontalAlignment="Right">Custom address:</TextBlock>
+                <TextBox Grid.Column="1" Margin="10" HorizontalAlignment="Left">testificate@examlpe.com</TextBox>
+            </Grid>
+        </StackPanel>
+        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="20*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Separator Grid.Row="0"></Separator>
+            <TabPanel Grid.Row="1">
+                <TabControl>
+                    <TabItem>
+                        <TabItem.Header>
+                            <TextBlock>Application</TextBlock>
+                        </TabItem.Header>
+                    </TabItem>
+                    <TabItem>
+                        <TabItem.Header>
+                            <TextBlock>Deployment type</TextBlock>
+                        </TabItem.Header>
+                    </TabItem>
+                    <TabItem>
+                        <TabItem.Header>
+                            <TextBlock>Distribution</TextBlock>
+                        </TabItem.Header>
+                    </TabItem>
+                </TabControl>
+            </TabPanel>
+        </Grid>
+    </Grid>
+</Window>
