@@ -1,0 +1,88 @@
+﻿<Window x:Class="SpokojnySklepUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SpokojnySklepUI"
+        mc:Ignorable="d"
+        Title="Spokojny Sklep UI" Height="450" Width="800"
+        KeyDown="MainWindow_OnKeyDown">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <GroupBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="20" Padding="10">
+            <GroupBox.Header>Produkt</GroupBox.Header>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="18*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    Nazwa:
+                </TextBlock>
+                <TextBox Grid.Row="0" Grid.Column="1" Margin="10" Name="NameOfProduct"></TextBox>
+                <TextBlock Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    Cena:
+                </TextBlock>
+                <TextBox Grid.Row="1" Grid.Column="1" Margin="10" Name="PriceOfProduct"
+                         PreviewTextInput="PriceOfProduct_OnPreviewTextInput">
+                </TextBox>
+                <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" Margin="50 0" Click="PreviousItemButton_OnClick" Name="PreviousItemButton">Poprzedni</Button>
+                    <Button Grid.Column="1" Margin="50 0" Click="NextItemButton_OnClick" Name="NextItemButton">Kolejny</Button>
+                </Grid>
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Grid.Row="1" Grid.Column="0" Margin="20" Padding="10">
+            <GroupBox.Header>Rabaty</GroupBox.Header>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="4*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <RadioButton Grid.Row="0">Procentowy</RadioButton>
+                <RadioButton Grid.Row="1">Stały</RadioButton>
+                <TextBlock Grid.Row="2">Wartość rabatu:</TextBlock>
+                <TextBox Grid.Row="3" Name="DiscountValue" PreviewTextInput="DiscountValue_OnPreviewTextInput"></TextBox>
+            </Grid>
+        </GroupBox>
+        <GroupBox Grid.Row="1" Grid.Column="1" Margin="20" Padding="10">
+            <GroupBox.Header>Oblicz cenę</GroupBox.Header>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="0" Grid.Column="0">Wartość przed rabatem:</TextBlock>
+                <TextBlock Grid.Row="0" Grid.Column="1" Name="BeforeDiscountOutput">0 zł</TextBlock>
+                <TextBlock Grid.Row="1" Grid.Column="0">Wartość po rabacie:</TextBlock>
+                <TextBlock Grid.Row="1" Grid.Column="1" Name="AfterDiscountOutput">0 zł</TextBlock>
+                <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Click="CalculatePriceButton_OnClick">Oblicz</Button>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</Window>
