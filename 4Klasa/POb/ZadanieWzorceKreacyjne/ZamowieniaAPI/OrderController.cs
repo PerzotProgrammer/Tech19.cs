@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Text.Json;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace ZamowieniaAPI;
@@ -16,24 +17,21 @@ public class OrderController : ControllerBase
     }
 
     [HttpGet("getAll")]
-    public async Task<ActionResult<IEnumerable<OrderDTO>>> GetOrders()
+    public JsonResult GetOrders()
     {
-        return await Context.Orders.ToListAsync();
+        return new JsonResult(Context.Orders
+            .Include(o => o.Burgers)
+            .Include(o => o.Fries)
+            .Include(o => o.Drinks)
+            .ToList());
     }
 
     [HttpPost("add")]
-    public async Task<ActionResult<OrderDTO>> PostOrder(OrderDTO orderDto)
+    public JsonResult PostOrder(Order order)
     {
-        OrderDTO newOrderDto = new OrderDTO
-        {
-            Burgers = orderDto.Burgers,
-            Fries = orderDto.Fries,
-            Drinks = orderDto.Drinks
-        };
+        Context.Orders.Add(order);
+        Context.SaveChanges();
 
-        await Context.Orders.AddAsync(newOrderDto);
-        await Context.SaveChangesAsync();
-
-        return newOrderDto;
+        return new JsonResult(order);
     }
 }

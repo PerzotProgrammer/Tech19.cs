@@ -34,10 +34,10 @@ public class OrderHttpClient
         return response.StatusCode;
     }
 
-    public async Task<IAsyncEnumerable<Order?>> GetAllOrdersAsync()
+    public async Task<string> GetAllOrdersAsync()
     {
         HttpResponseMessage response = await HttpClient.GetAsync("api/Order/getAll");
         response.EnsureSuccessStatusCode();
-        return response.Content.ReadFromJsonAsAsyncEnumerable<Order>();
+        return await response.Content.ReadAsStringAsync();
     }
 }

@@ -4,7 +4,7 @@ namespace ZamowieniaAPI;
 
 public class OrderContext : DbContext
 {
-    public DbSet<OrderDTO> Orders { get; private set; }
+    public DbSet<Order> Orders { get; private set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -13,14 +13,22 @@ public class OrderContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<OrderDTO>()
-            .HasMany(e => e.Burgers);
+        modelBuilder.Entity<Order>()
+            .HasMany(e => e.Burgers)
+            .WithOne(e => e.Order)
+            .HasForeignKey(e => e.OrderId)
+            .IsRequired();
 
-        modelBuilder.Entity<OrderDTO>()
-            .HasMany(e => e.Drinks);
+        modelBuilder.Entity<Order>()
+            .HasMany(e => e.Drinks)
+            .WithOne(e => e.Order)
+            .HasForeignKey(e => e.OrderId)
+            .IsRequired();
 
-        modelBuilder.Entity<OrderDTO>()
-            .HasMany(e => e.Fries);
-        
+        modelBuilder.Entity<Order>()
+            .HasMany(e => e.Fries)
+            .WithOne(e => e.Order)
+            .HasForeignKey(e => e.OrderId)
+            .IsRequired();
     }
 }
