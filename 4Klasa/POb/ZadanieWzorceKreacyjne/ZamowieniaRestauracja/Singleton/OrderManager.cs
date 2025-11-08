@@ -2,6 +2,7 @@
 using ZamowieniaRestauracja.Builders;
 using ZamowieniaRestauracja.Enums;
 using ZamowieniaRestauracja.Factory;
+using ZamowieniaRestauracja.Http;
 
 namespace ZamowieniaRestauracja.Singleton;
 
@@ -23,7 +24,7 @@ public class OrderManager
         return Instance;
     }
 
-    public void CreateNewOrder()
+    public Order CreateNewOrder()
     {
         Order order = new Order();
         bool addMore = true;
@@ -53,18 +54,19 @@ public class OrderManager
         {
             burger.Describe();
         }
-        
+
         foreach (Fries fires in order.Fries)
         {
             fires.Describe();
         }
-        
+
         foreach (Drink drink in order.Drinks)
         {
             drink.Describe();
         }
 
         Console.WriteLine("Order saved!");
+        return order;
     }
 
     public string SerializeOrders()

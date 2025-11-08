@@ -5,34 +5,28 @@ namespace ZamowieniaRestauracja.Builders;
 [Serializable]
 public class Fries
 {
-    public FriesType FriesType { get; private set; } = FriesType.Undefined;
-    public Size Size { get; private set; } = Size.Undefined;
+    public string FriesType { get; private set; } = "";
+    public string Size { get; private set; } = "";
 
     public Fries SetFriesType(FriesType friesType)
     {
-        FriesType = friesType;
+        FriesType = friesType.ToString();
         return this;
     }
 
     public Fries SetSize(Size size)
     {
-        Size = size;
+        Size = size.ToString();
         return this;
     }
 
-    public Fries Reset()
-    {
-        Size = Size.Undefined;
-        FriesType = FriesType.Undefined;
-        return this;
-    }
 
     public void Describe()
     {
         Console.WriteLine("------------------");
         Console.WriteLine("FRIES");
-        Console.WriteLine($"Size: {Size.ToString()}");
-        Console.WriteLine($"Fries type: {FriesType.ToString()}");
+        Console.WriteLine($"Size: {Size}");
+        Console.WriteLine($"Fries type: {FriesType}");
         Console.WriteLine("------------------");
     }
 }

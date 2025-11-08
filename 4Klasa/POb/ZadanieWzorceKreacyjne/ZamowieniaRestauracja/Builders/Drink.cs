@@ -4,19 +4,19 @@ namespace ZamowieniaRestauracja.Builders;
 
 public class Drink
 {
-    public DrinkType DrinkType { get; private set; } = DrinkType.Undefined;
-    public Size Size { get; private set; } = Size.Undefined;
+    public string DrinkType { get; private set; } = "";
+    public string Size { get; private set; } = "";
 
 
     public Drink SetDrinkType(DrinkType drinkType)
     {
-        DrinkType = drinkType;
+        DrinkType = drinkType.ToString();
         return this;
     }
 
     public Drink SetDrinkSize(Size size)
     {
-        Size = size;
+        Size = size.ToString();
         return this;
     }
 

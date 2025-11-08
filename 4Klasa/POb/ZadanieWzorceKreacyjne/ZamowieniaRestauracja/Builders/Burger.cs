@@ -5,34 +5,26 @@ namespace ZamowieniaRestauracja.Builders;
 [Serializable]
 public class Burger
 {
-    public BunType Bun { get; private set; } = BunType.Undefined;
-    public MainBurgerIngredientType MainBurgerIngredient { get; private set; } = MainBurgerIngredientType.Undefined;
-    public List<Optional> Optionals { get; private set; } = new();
+    public string Bun { get; private set; } = "";
+    public string MainBurgerIngredient { get; private set; } = "";
+    public List<string> Optionals { get; private set; } = new();
 
 
     public Burger SetBun(BunType bunType)
     {
-        Bun = bunType;
+        Bun = bunType.ToString();
         return this;
     }
 
     public Burger SetMainBurgerIngredient(MainBurgerIngredientType mainBurgerIngredientType)
     {
-        MainBurgerIngredient = mainBurgerIngredientType;
+        MainBurgerIngredient = mainBurgerIngredientType.ToString();
         return this;
     }
 
-    public Burger AddOptionals(IEnumerable<Optional> optionals)
+    public Burger AddOptionals(IEnumerable<string> optionals)
     {
         Optionals.AddRange(optionals);
-        return this;
-    }
-
-    public Burger Reset()
-    {
-        Bun = BunType.Undefined;
-        MainBurgerIngredient = MainBurgerIngredientType.Undefined;
-        Optionals = new List<Optional>();
         return this;
     }
 
@@ -40,12 +32,12 @@ public class Burger
     {
         Console.WriteLine("------------------");
         Console.WriteLine("BURGER");
-        Console.WriteLine($"Bun: {Bun.ToString()}");
-        Console.WriteLine($"Main Burger Ingredient: {MainBurgerIngredient.ToString()}");
+        Console.WriteLine($"Bun: {Bun}");
+        Console.WriteLine($"Main Burger Ingredient: {MainBurgerIngredient}");
         Console.WriteLine("Optionals:");
-        foreach (Optional optional in Optionals)
+        foreach (string optional in Optionals)
         {
-            Console.WriteLine($" - {optional.ToString()}");
+            Console.WriteLine($" - {optional}");
         }
 
         Console.WriteLine("------------------");

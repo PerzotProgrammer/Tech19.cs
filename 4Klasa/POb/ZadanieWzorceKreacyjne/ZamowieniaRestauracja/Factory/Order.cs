@@ -68,7 +68,7 @@ public class Order
         }
 
         bool addMore = true;
-        List<Optional> optionals = new List<Optional>();
+        List<string> optionals = new List<string>();
 
         do
         {
@@ -93,7 +93,7 @@ public class Order
             {
             }
 
-            optionals.Add(optional);
+            optionals.Add(optional.ToString());
 
             Console.WriteLine("Do you want add more?");
             Console.WriteLine("(C to cancel)");

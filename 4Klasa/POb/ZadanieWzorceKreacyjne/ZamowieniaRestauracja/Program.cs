@@ -1,10 +1,18 @@
-﻿using ZamowieniaRestauracja.Singleton;
+﻿using System.Net;
+using ZamowieniaRestauracja.Factory;
+using ZamowieniaRestauracja.Http;
+using ZamowieniaRestauracja.Singleton;
 
 namespace ZamowieniaRestauracja;
 
 class Program
 {
     static void Main(string[] args)
+    {
+        RunAsync().GetAwaiter().GetResult();
+    }
+
+    static async Task RunAsync()
     {
         OrderManager orderManager = OrderManager.GetInstance();
 
@@ -26,7 +34,18 @@ class Program
             switch (opt)
             {
                 case 1:
-                    orderManager.CreateNewOrder();
+                    Order order = orderManager.CreateNewOrder();
+                    Console.WriteLine("Do you want to send this order?");
+                    Console.WriteLine("(C to cancel)");
+
+                    if (Console.ReadLine()?.ToLower() != "c")
+                    {
+                        HttpStatusCode status = await OrderHttpClient.GetInstance().PostOrderAsync(order);
+                        Console.WriteLine(status == HttpStatusCode.OK
+                            ? "ORDER SENT TO THE DATABASE!!!"
+                            : "SOMETHING WENT WRONG!!!");
+                    }
+
                     break;
                 case 2:
                     running = false;
