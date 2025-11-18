@@ -2,12 +2,11 @@
 
 namespace ZamowieniaRestauracja.Builders;
 
-[Serializable]
 public class Burger
 {
-    public string Bun { get; private set; } = "";
-    public string MainBurgerIngredient { get; private set; } = "";
-    public List<string> Optionals { get; private set; } = new();
+    public string Bun { get; set; } = "";
+    public string MainBurgerIngredient { get; set; } = "";
+    public List<string> Optionals { get; set; } = new();
 
 
     public Burger SetBun(BunType bunType)

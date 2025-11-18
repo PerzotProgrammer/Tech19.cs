@@ -3,12 +3,11 @@ using ZamowieniaRestauracja.Enums;
 
 namespace ZamowieniaRestauracja.Factory;
 
-[Serializable]
 public class Order
 {
-    public List<Burger> Burgers { get; private set; }
-    public List<Fries> Fries { get; private set; }
-    public List<Drink> Drinks { get; private set; }
+    public List<Burger> Burgers { get; set; }
+    public List<Fries> Fries { get; set; }
+    public List<Drink> Drinks { get; set; }
 
     public Order()
     {

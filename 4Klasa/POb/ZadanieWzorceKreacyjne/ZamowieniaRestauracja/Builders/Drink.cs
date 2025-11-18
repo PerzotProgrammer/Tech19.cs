@@ -4,8 +4,8 @@ namespace ZamowieniaRestauracja.Builders;
 
 public class Drink
 {
-    public string DrinkType { get; private set; } = "";
-    public string Size { get; private set; } = "";
+    public string DrinkType { get; set; } = "";
+    public string Size { get; set; } = "";
 
 
     public Drink SetDrinkType(DrinkType drinkType)

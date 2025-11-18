@@ -1,8 +1,9 @@
 ﻿using System.Net;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
-using System.Text.Json;
+using Newtonsoft.Json;
 using ZamowieniaRestauracja.Factory;
+using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace ZamowieniaRestauracja.Http;
 
@@ -34,10 +35,23 @@ public class OrderHttpClient
         return response.StatusCode;
     }
 
-    public async Task<string> GetAllOrdersAsync()
+    public async Task<List<Order>?> GetAllOrdersAsync()
     {
         HttpResponseMessage response = await HttpClient.GetAsync("api/Order/getAll");
         response.EnsureSuccessStatusCode();
-        return await response.Content.ReadAsStringAsync();
+
+        string json = await response.Content.ReadAsStringAsync();
+        try
+        {
+            List<Order>? orders = JsonConvert.DeserializeObject<List<Order>>(json);
+            return orders;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Deserializacja nieudana: " + ex.Message);
+            Console.WriteLine("Otrzymany JSON:");
+            Console.WriteLine(json);
+            return new List<Order>();
+        }
     }
 }

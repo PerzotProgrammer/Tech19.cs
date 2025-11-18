@@ -3,6 +3,7 @@ using ZamowieniaRestauracja.Factory;
 using ZamowieniaRestauracja.Http;
 using ZamowieniaRestauracja.Singleton;
 using System.Linq;
+using ZamowieniaRestauracja.Builders;
 
 namespace ZamowieniaRestauracja;
 
@@ -24,7 +25,7 @@ class Program
         {
             Console.WriteLine("What you want to do:");
             Console.WriteLine("1. Place new order");
-            Console.WriteLine("2. Get orders from database (JSON only)");
+            Console.WriteLine("2. Read orders from database");
             Console.WriteLine("3. Quit");
 
             int opt;
@@ -50,9 +51,19 @@ class Program
 
                     break;
                 case 2:
-                    string ordersStringAsync = await OrderHttpClient.GetInstance().GetAllOrdersAsync();
-                    Console.WriteLine(ordersStringAsync);
-                    
+                    List<Order>? orders = await OrderHttpClient.GetInstance().GetAllOrdersAsync();
+
+                    if (orders != null)
+                    {
+                        foreach (Order ord in orders)
+                        {
+                            Console.WriteLine("ORDER");
+                            foreach (Burger burger in ord.Burgers) burger.Describe();
+                            foreach (Fries fries in ord.Fries) fries.Describe();
+                            foreach (Drink drink in ord.Drinks) drink.Describe();
+                        }
+                    }
+
                     break;
                 case 3:
                     running = false;

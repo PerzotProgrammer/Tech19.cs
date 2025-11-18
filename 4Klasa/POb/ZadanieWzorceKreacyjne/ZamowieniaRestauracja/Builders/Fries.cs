@@ -2,11 +2,10 @@
 
 namespace ZamowieniaRestauracja.Builders;
 
-[Serializable]
 public class Fries
 {
-    public string FriesType { get; private set; } = "";
-    public string Size { get; private set; } = "";
+    public string FriesType { get; set; } = "";
+    public string Size { get; set; } = "";
 
     public Fries SetFriesType(FriesType friesType)
     {

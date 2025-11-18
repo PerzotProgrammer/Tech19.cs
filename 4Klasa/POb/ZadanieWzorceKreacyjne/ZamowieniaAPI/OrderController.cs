@@ -17,9 +17,9 @@ public class OrderController : ControllerBase
     }
 
     [HttpGet("getAll")]
-    public JsonResult GetOrders()
+    public IActionResult GetOrders()
     {
-        return new JsonResult(Context.Orders
+        return Ok(Context.Orders
             .Include(o => o.Burgers)
             .Include(o => o.Fries)
             .Include(o => o.Drinks)
@@ -27,11 +27,11 @@ public class OrderController : ControllerBase
     }
 
     [HttpPost("add")]
-    public JsonResult PostOrder(Order order)
+    public IActionResult PostOrder(Order order)
     {
         Context.Orders.Add(order);
         Context.SaveChanges();
 
-        return new JsonResult(order);
+        return Ok(order);
     }
 }
