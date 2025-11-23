@@ -1,0 +1,63 @@
+﻿<Window x:Class="Desktopowa.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Desktopowa"
+        mc:Ignorable="d"
+        Title="Konwerter jednostek by stacja BP" Height="450" Width="800">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TabControl>
+            <TabItem Header="Długość">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Row="0" Grid.Column="0">Wartość:</Label>
+                    <TextBox Grid.Row="0" Grid.Column="1" x:Name="DistanceInput" TextChanged="DistanceInput_TextChanged"></TextBox>
+                    <Label Grid.Row="1" Grid.Column="0">Z jednoski:</Label>
+                    <ComboBox Grid.Row="2" Grid.Column="0" SelectionChanged="ComboBoxDistance_SelectionChanged">
+                        <ComboBoxItem x:Name="FromDistanceMeter">Metr</ComboBoxItem>
+                        <ComboBoxItem x:Name="FromDistanceKilometer">Kilometr</ComboBoxItem>
+                        <ComboBoxItem x:Name="FromDistanceCentimeter">Centymetr</ComboBoxItem>
+                        <ComboBoxItem x:Name="FromDistanceInch">Cal</ComboBoxItem>
+                        <ComboBoxItem x:Name="FromDistanceFoot">Stopa</ComboBoxItem>
+                        <ComboBoxItem x:Name="FromDistanceMile">Mila</ComboBoxItem>
+                    </ComboBox>
+                    <Label Grid.Row="1" Grid.Column="1">Na jednostkę:</Label>
+                    <ComboBox Grid.Row="2" Grid.Column="1" SelectionChanged="ComboBoxDistance_SelectionChanged">
+                        <ComboBoxItem x:Name="ToDistanceMeter">Metr</ComboBoxItem>
+                        <ComboBoxItem x:Name="ToDistanceKilometer">Kilometr</ComboBoxItem>
+                        <ComboBoxItem x:Name="ToDistanceCentimeter">Centymetr</ComboBoxItem>
+                        <ComboBoxItem x:Name="ToDistanceInch">Cal</ComboBoxItem>
+                        <ComboBoxItem x:Name="ToDistanceFoot">Stopa</ComboBoxItem>
+                        <ComboBoxItem x:Name="ToDistanceMile">Mila</ComboBoxItem>
+                    </ComboBox>
+                    <Label Grid.Row="3" Grid.Column="0">Wynik:</Label>
+                    <TextBlock x:Name="DistanceOutput" Grid.Row="3" Grid.Column="1">0</TextBlock>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Masa">
+
+            </TabItem>
+            <TabItem Header="Temperatura">
+
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>
