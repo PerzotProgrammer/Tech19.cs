@@ -3,6 +3,7 @@
 *.test.*
 *.user
 *.sln
+*.slnx
 *.exe
 
 
